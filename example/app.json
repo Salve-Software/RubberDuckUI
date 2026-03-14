@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "RubberDuckUi Example",
-    "slug": "react-native-rubber-duck-ui-example",
+    "slug": "rubber-duck-ui-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
