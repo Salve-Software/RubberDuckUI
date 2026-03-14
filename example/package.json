@@ -1,21 +1,37 @@
 {
-  "name": "react-native-rubber-duck-ui-example",
+  "name": "rubber-duck-ui-example",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "storybook-generate": "sb-rn-get-stories"
   },
   "dependencies": {
+    "@babel/core": "^7.29.0",
     "@expo/metro-runtime": "~55.0.6",
+    "@gorhom/bottom-sheet": "^5.2.8",
+    "@react-native-async-storage/async-storage": "^3.0.1",
+    "@react-native-community/datetimepicker": "^8.6.0",
+    "@react-native-community/slider": "^5.1.2",
+    "@storybook/addon-ondevice-actions": "^10.2.3",
+    "@storybook/addon-ondevice-controls": "^10.2.3",
+    "@storybook/react-native": "^10.2.3",
+    "babel-loader": "^8.4.1",
     "expo": "~55.0.6",
     "expo-status-bar": "~55.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-native": "0.83.2",
-    "react-native-web": "~0.21.0"
+    "react-native-gesture-handler": "^2.30.0",
+    "react-native-reanimated": "^4.2.2",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-svg": "^15.15.3",
+    "react-native-web": "~0.21.0",
+    "react-native-worklets": "^0.4.0",
+    "storybook": "^10.2.19"
   },
   "private": true,
   "devDependencies": {
