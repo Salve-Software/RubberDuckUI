@@ -1,0 +1,28 @@
+name: � Chore
+description: Internal maintenance, tooling, configuration or housekeeping tasks
+title: "chore: "
+labels:
+  - chore
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs to be done
+      description: Describe the task.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Why is this needed?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: Task completed
