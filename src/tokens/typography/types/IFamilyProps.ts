@@ -1,5 +1,7 @@
 import type { FONT_FAMILIES } from '../constants';
 
-export interface IFamilyProps {
-  key: keyof typeof FONT_FAMILIES;
+export type FamilyKey = keyof typeof FONT_FAMILIES;
+
+export interface IFamilyProps<K extends FamilyKey = FamilyKey> {
+  key: K;
 }

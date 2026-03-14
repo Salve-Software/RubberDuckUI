@@ -1,6 +1,6 @@
 import type { IColorProps } from './colors';
 import type { IRadiiProps, ISpacerProps } from './spacer';
-import type { IFamilyProps, ISizeProps, IWeightProps } from './typography';
+import type { FamilyKey, IFamilyProps, ISizeProps, IWeightProps } from './typography';
 import { Typography } from './typography';
 import { Colors } from './colors';
 import { Spacer } from './spacer';
@@ -26,7 +26,7 @@ export class Tokens {
     return Typography.weight(props);
   };
 
-  static fontFamily = (props: IFamilyProps) => {
+  static fontFamily = <K extends FamilyKey>(props: IFamilyProps<K>) => {
     return Typography.family(props);
   };
 }

@@ -1,7 +1,7 @@
-import { RubberDuckStore } from '../../store';
+import { useRubberDuckStore } from '../../store';
 
 export const useTheme = () => {
-  const colors = RubberDuckStore((state) => state.colors);
+  const colors = useRubberDuckStore((state) => state.colors);
 
   return {
     colors,

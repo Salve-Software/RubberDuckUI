@@ -1,5 +1,5 @@
 import type { IConfigureStore } from './store/types';
-import { RubberDuckStore } from './store';
+import { useRubberDuckStore } from './store';
 
 export class RubberDuckUI {
   /**
@@ -17,7 +17,7 @@ export class RubberDuckUI {
    * });
    */
   static configure = (props: IConfigureStore): void => {
-    RubberDuckStore.getState()._configure(props);
+    useRubberDuckStore.getState()._configure(props);
   };
 
   /**
@@ -30,6 +30,6 @@ export class RubberDuckUI {
    * RubberDuckUI.reset();
    */
   static reset = (): void => {
-    RubberDuckStore.getState()._reset();
+    useRubberDuckStore.getState()._reset();
   };
 }

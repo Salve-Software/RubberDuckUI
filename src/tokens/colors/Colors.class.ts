@@ -1,10 +1,10 @@
 import type { IColorProps } from './types';
-import { RubberDuckStore } from '../../store';
+import { useRubberDuckStore } from '../../store';
 
 export class Colors {
   static color = (props: IColorProps): string => {
     const { key } = props;
-    const currentColors = RubberDuckStore.getState().colors;
+    const currentColors = useRubberDuckStore.getState().colors;
     return currentColors[key];
   };
 }

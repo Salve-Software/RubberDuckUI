@@ -2,7 +2,7 @@ import type { IStoreState } from './types';
 import { create } from 'zustand';
 import { defaultState } from './defaultState';
 
-export const RubberDuckStore = create<IStoreState>((set) => ({
+export const useRubberDuckStore = create<IStoreState>((set) => ({
   ...defaultState,
 
   // private

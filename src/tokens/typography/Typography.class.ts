@@ -1,4 +1,4 @@
-import type { IFamilyProps, ISizeProps, IWeightProps } from './types';
+import type { FamilyKey, IFamilyProps, ISizeProps, IWeightProps } from './types';
 import { FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS } from './constants';
 
 export class Typography {
@@ -12,7 +12,7 @@ export class Typography {
     return FONT_WEIGHTS[key];
   };
 
-  static family = (props: IFamilyProps) => {
+  static family = <K extends FamilyKey>(props: IFamilyProps<K>): (typeof FONT_FAMILIES)[K] => {
     const { key } = props;
     return FONT_FAMILIES[key];
   };
