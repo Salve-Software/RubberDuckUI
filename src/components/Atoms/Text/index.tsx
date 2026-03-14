@@ -8,7 +8,7 @@ export const Text: React.FC<PropsWithChildren<ITextProps>> = (props) => {
   const { children, numberOfLines } = props;
 
   const styles = useStyles(props);
-
+  
   return (
     <TextRN style={styles.text} numberOfLines={numberOfLines}>
       {children}
