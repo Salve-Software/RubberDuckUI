@@ -1,16 +1,31 @@
 import type { IMountReanimatedStylesProps } from './types';
-import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { useEffect } from 'react';
+import {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 export const useReanimatedStyles = (props: IMountReanimatedStylesProps) => {
-  const { isChecked } = props;
+  const { isChecked, accentColor, borderDefaultColor } = props;
 
-  const checkbox = useAnimatedStyle(() => {
-    return {
-      opacity: withTiming(isChecked ? 1 : 0),
-    };
-  }, [isChecked]);
+  const progress = useSharedValue(isChecked ? 1 : 0);
+
+  useEffect(() => {
+    progress.value = withTiming(isChecked ? 1 : 0, { duration: 200 });
+  }, [isChecked, progress]);
+
+  const outerCheckbox = useAnimatedStyle(() => ({
+    borderColor: interpolateColor(progress.value, [0, 1], [borderDefaultColor, accentColor]),
+  }), [borderDefaultColor, accentColor]);
+
+  const innerCheckbox = useAnimatedStyle(() => ({
+    opacity: progress.value,
+  }), [borderDefaultColor, accentColor]);
 
   return {
-    checkbox,
+    outerCheckbox,
+    innerCheckbox,
   };
 };
