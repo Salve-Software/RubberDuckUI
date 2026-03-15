@@ -10203,6 +10203,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-react-native@npm:^7.3.6":
+  version: 7.3.6
+  resolution: "lottie-react-native@npm:7.3.6"
+  peerDependencies:
+    "@lottiefiles/dotlottie-react": ^0.13.5
+    react: "*"
+    react-native: ">=0.46"
+    react-native-windows: ">=0.63.x"
+  peerDependenciesMeta:
+    "@lottiefiles/dotlottie-react":
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: 10c0/1e3c0d0e763f0021c14bc85f90a9fe45ad4fa446db8961c3153507b271b1029b9095656924a553dafdff6987120d220c054772ff5efaf002b2eb567fe74e3533
+  languageName: node
+  linkType: hard
+
 "loupe@npm:^3.1.0, loupe@npm:^3.1.4":
   version: 3.2.1
   resolution: "loupe@npm:3.2.1"
@@ -12741,6 +12758,7 @@ __metadata:
     babel-loader: "npm:^8.4.1"
     expo: "npm:~55.0.6"
     expo-status-bar: "npm:~55.0.4"
+    lottie-react-native: "npm:^7.3.6"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-native: "npm:0.83.2"
@@ -12778,6 +12796,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.5.4"
     jest: "npm:^29.7.0"
     lefthook: "npm:^2.0.3"
+    lottie-react-native: "npm:^7.3.6"
     lucide-react-native: "npm:^0.577.0"
     prettier: "npm:^2.8.8"
     react: "npm:19.2.0"
@@ -12788,6 +12807,7 @@ __metadata:
     typescript: "npm:^5.9.2"
     zustand: "npm:^5.0.11"
   peerDependencies:
+    lottie-react-native: "*"
     react: "*"
     react-native: "*"
     react-native-reanimated: ">=4.0.0"
