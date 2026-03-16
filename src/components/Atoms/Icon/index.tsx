@@ -1,9 +1,9 @@
-import type { IIconProps } from "./types";
-import type { LucideIcon } from "lucide-react-native";
-import * as Icons from "lucide-react-native";
-import React from "react";
-import { useRubberDuckStore } from "../../../store";
-import { buildSize } from "./library";
+import type { IIconProps } from './types';
+import type { LucideIcon } from 'lucide-react-native';
+import * as Icons from 'lucide-react-native';
+import React from 'react';
+import { useRubberDuckStore } from '../../../store';
+import { buildSize } from './library';
 
 export const Icon: React.FC<IIconProps> = (props) => {
   const { icon, size, color = "textPrimary" } = props;
