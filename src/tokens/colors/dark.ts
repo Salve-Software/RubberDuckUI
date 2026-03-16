@@ -20,4 +20,6 @@ export const dark: IColors = {
   error: '#EF4444',
   warning: '#F97316',
   info: '#3B82F6',
+  white: "#FAFAFA",
+  black: "#181717",
 };

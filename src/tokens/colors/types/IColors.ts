@@ -22,4 +22,7 @@ export interface IColors {
   error: string;
   warning: string;
   info: string;
+  
+  white: string;
+  black: string;
 }

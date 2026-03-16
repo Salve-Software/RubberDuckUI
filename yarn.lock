@@ -12131,6 +12131,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-content-loader@npm:^7.1.2":
+  version: 7.1.2
+  resolution: "react-content-loader@npm:7.1.2"
+  peerDependencies:
+    react: ">=18.0.0"
+  checksum: 10c0/11bdc384ea94731a9066e0598dcd62e9eaee69528c1db0dd581652b47c329f0cb92de55ea0dc37ec2ef0791de5e1c4738032a8f61b839d8f03df1f13fb03b144
+  languageName: node
+  linkType: hard
+
 "react-devtools-core@npm:^6.1.5":
   version: 6.1.5
   resolution: "react-devtools-core@npm:6.1.5"
@@ -12800,9 +12809,11 @@ __metadata:
     lucide-react-native: "npm:^0.577.0"
     prettier: "npm:^2.8.8"
     react: "npm:19.2.0"
+    react-content-loader: "npm:^7.1.2"
     react-native: "npm:0.83.2"
     react-native-builder-bob: "npm:^0.40.18"
     react-native-reanimated: "npm:^4.2.2"
+    react-native-svg: "npm:^15.15.3"
     release-it: "npm:^19.0.4"
     turbo: "npm:^2.5.6"
     typescript: "npm:^5.9.2"
@@ -12810,6 +12821,7 @@ __metadata:
   peerDependencies:
     lottie-react-native: "*"
     react: "*"
+    react-content-loader: "*"
     react-native: "*"
     react-native-reanimated: ">=4.0.0"
     react-native-worklets: ">=0.4.0"

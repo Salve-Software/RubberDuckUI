@@ -26,5 +26,6 @@
     "strict": true,
     "target": "ESNext",
     "verbatimModuleSyntax": true
-  }
+  },
+  "include": ["global.d.ts", "declarations.d.ts", "src"]
 }

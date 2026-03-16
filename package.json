@@ -83,9 +83,11 @@
     "lottie-react-native": "^7.3.6",
     "prettier": "^2.8.8",
     "react": "19.2.0",
+    "react-content-loader": "^7.1.2",
     "react-native": "0.83.2",
     "react-native-builder-bob": "^0.40.18",
     "react-native-reanimated": "^4.2.2",
+    "react-native-svg": "^15.15.3",
     "release-it": "^19.0.4",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
@@ -93,7 +95,9 @@
   "peerDependencies": {
     "lottie-react-native": "*",
     "react": "*",
+    "react-content-loader": "*",
     "react-native": "*",
+    "react-native-svg": "*",
     "react-native-reanimated": ">=4.0.0",
     "react-native-worklets": ">=0.4.0"
   },
