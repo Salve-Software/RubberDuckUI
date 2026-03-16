@@ -1,19 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Loading, Text } from 'rubber-duck-ui';
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 24,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-});
+import { styles } from './Loading.styles';
 
 const meta = {
   title: 'Atoms/Loading',
@@ -55,10 +45,7 @@ export const Sizes: Story = {
   render: () => (
     <View style={styles.container}>
       {(['tiny_48', 'small_64', 'big_150'] as const).map((size) => (
-        <View
-          key={size}
-          style={styles.row}
-        >
+        <View key={size} style={styles.row}>
           <Loading size={size} />
           <Text size="sm">{size}</Text>
         </View>
@@ -70,23 +57,16 @@ export const Sizes: Story = {
 export const Colors: Story = {
   render: () => (
     <View style={styles.container}>
-      {(['accent', 'success', 'error', 'warning', 'info'] as const).map((color) => (
-        <View
-          key={color}
-          style={styles.row}
-        >
-          <Loading
-            size="small_64"
-            color={color}
-          />
-          <Text
-            size="sm"
-            color={color}
-          >
-            {color}
-          </Text>
-        </View>
-      ))}
+      {(['accent', 'success', 'error', 'warning', 'info'] as const).map(
+        (color) => (
+          <View key={color} style={styles.row}>
+            <Loading size="small_64" color={color} />
+            <Text size="sm" color={color}>
+              {color}
+            </Text>
+          </View>
+        ),
+      )}
     </View>
   ),
 };

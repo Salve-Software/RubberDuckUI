@@ -1,14 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Text } from 'rubber-duck-ui';
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 12,
-  },
-});
+import { styles } from './Text.styles';
 
 const meta = {
   title: 'Atoms/Text',

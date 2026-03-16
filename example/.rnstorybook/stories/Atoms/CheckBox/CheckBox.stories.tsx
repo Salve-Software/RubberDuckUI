@@ -1,13 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { CheckBox } from 'rubber-duck-ui';
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 16,
-  },
-});
+import { styles } from './CheckBox.styles';
 
 const meta = {
   title: 'Atoms/CheckBox',

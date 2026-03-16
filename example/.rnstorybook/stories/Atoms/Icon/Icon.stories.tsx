@@ -1,19 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Icon, Text } from 'rubber-duck-ui';
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 16,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-});
+import { styles } from './Icon.styles';
 
 const meta = {
   title: 'Atoms/Icon',
@@ -29,7 +19,14 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['small_16', 'tiny_20', 'medium_26', 'big_32', 'large_40', 'gigant_104'],
+      options: [
+        'small_16',
+        'tiny_20',
+        'medium_26',
+        'big_32',
+        'large_40',
+        'gigant_104',
+      ],
     },
     color: {
       control: 'select',
@@ -60,20 +57,21 @@ export const Default: Story = {};
 export const Sizes: Story = {
   render: () => (
     <View style={styles.container}>
-      {(['small_16', 'tiny_20', 'medium_26', 'big_32', 'large_40', 'gigant_104'] as const).map(
-        (size) => (
-          <View
-            key={size}
-            style={styles.row}
-          >
-            <Icon
-              icon="Star"
-              size={size}
-            />
-            <Text size="sm">{size}</Text>
-          </View>
-        ),
-      )}
+      {(
+        [
+          'small_16',
+          'tiny_20',
+          'medium_26',
+          'big_32',
+          'large_40',
+          'gigant_104',
+        ] as const
+      ).map((size) => (
+        <View key={size} style={styles.row}>
+          <Icon icon="Star" size={size} />
+          <Text size="sm">{size}</Text>
+        </View>
+      ))}
     </View>
   ),
 };
@@ -93,19 +91,9 @@ export const Colors: Story = {
           'info',
         ] as const
       ).map((color) => (
-        <View
-          key={color}
-          style={styles.row}
-        >
-          <Icon
-            icon="Circle"
-            size="medium_26"
-            color={color}
-          />
-          <Text
-            size="sm"
-            color={color}
-          >
+        <View key={color} style={styles.row}>
+          <Icon icon="Circle" size="medium_26" color={color} />
+          <Text size="sm" color={color}>
             {color}
           </Text>
         </View>
