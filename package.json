@@ -97,8 +97,8 @@
     "react": "*",
     "react-content-loader": "*",
     "react-native": "*",
-    "react-native-svg": "*",
     "react-native-reanimated": ">=4.0.0",
+    "react-native-svg": "*",
     "react-native-worklets": ">=0.4.0"
   },
   "workspaces": [
