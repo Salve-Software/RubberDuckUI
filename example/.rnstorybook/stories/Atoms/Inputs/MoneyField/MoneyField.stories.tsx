@@ -1,6 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MoneyField } from 'rubber-duck-ui';
+
+const RenderMoneyField = (args: React.ComponentProps<typeof MoneyField>) => {
+  const [value, setValue] = useState(args.value ?? '');
+
+  useEffect(() => {
+    setValue(args.value ?? '');
+  }, [args.value]);
+
+  return <MoneyField {...args} value={value} onChangeValue={setValue} />;
+};
 
 const meta = {
   title: 'Atoms/Inputs/MoneyField',
@@ -30,6 +40,7 @@ const meta = {
     isReadOnly: { control: 'boolean' },
     isDisabled: { control: 'boolean' },
   },
+  render: (args) => <RenderMoneyField {...args} />,
 } satisfies Meta<typeof MoneyField>;
 
 export default meta;

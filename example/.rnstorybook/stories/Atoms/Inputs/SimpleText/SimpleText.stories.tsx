@@ -1,8 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { SimpleText } from 'rubber-duck-ui';
 import { styles } from './SimpleText.styles';
+
+const RenderSimpleText = (args: React.ComponentProps<typeof SimpleText>) => {
+  const [value, setValue] = useState(args.value ?? '');
+
+  useEffect(() => {
+    setValue(args.value ?? '');
+  }, [args.value]);
+
+  return <SimpleText {...args} value={value} onChangeValue={setValue} />;
+};
 
 const meta = {
   title: 'Atoms/Inputs/SimpleText',
@@ -24,6 +34,7 @@ const meta = {
     isReadOnly: { control: 'boolean' },
     isDisabled: { control: 'boolean' },
   },
+  render: (args) => <RenderSimpleText {...args} />,
 } satisfies Meta<typeof SimpleText>;
 
 export default meta;

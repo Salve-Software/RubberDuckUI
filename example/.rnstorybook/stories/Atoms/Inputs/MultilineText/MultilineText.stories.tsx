@@ -1,6 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MultilineText } from 'rubber-duck-ui';
+
+const RenderMultilineText = (
+  args: React.ComponentProps<typeof MultilineText>,
+) => {
+  const [value, setValue] = useState(args.value ?? '');
+
+  useEffect(() => {
+    setValue(args.value ?? '');
+  }, [args.value]);
+
+  return <MultilineText {...args} value={value} onChangeValue={setValue} />;
+};
 
 const meta = {
   title: 'Atoms/Inputs/MultilineText',
@@ -24,6 +36,7 @@ const meta = {
     isReadOnly: { control: 'boolean' },
     isDisabled: { control: 'boolean' },
   },
+  render: (args) => <RenderMultilineText {...args} />,
 } satisfies Meta<typeof MultilineText>;
 
 export default meta;

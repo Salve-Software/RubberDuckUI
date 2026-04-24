@@ -1,6 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NumberField } from 'rubber-duck-ui';
+
+const RenderNumberField = (args: React.ComponentProps<typeof NumberField>) => {
+  const [value, setValue] = useState(args.value ?? '');
+
+  useEffect(() => {
+    setValue(args.value ?? '');
+  }, [args.value]);
+
+  return <NumberField {...args} value={value} onChangeValue={setValue} />;
+};
 
 const meta = {
   title: 'Atoms/Inputs/NumberField',
@@ -24,6 +34,7 @@ const meta = {
     isReadOnly: { control: 'boolean' },
     isDisabled: { control: 'boolean' },
   },
+  render: (args) => <RenderNumberField {...args} />,
 } satisfies Meta<typeof NumberField>;
 
 export default meta;
