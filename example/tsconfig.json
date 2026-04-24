@@ -1,9 +1,6 @@
 {
-  "extends": "../tsconfig",
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "rubber-duck-ui": ["../src/index"]
-    }
+    "strict": true
   }
 }
