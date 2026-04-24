@@ -1,7 +1,6 @@
 const path = require('path');
 const { getDefaultConfig } = require('@expo/metro-config');
 const { withMetroConfig } = require('react-native-monorepo-config');
-const { withStorybook } = require('@storybook/react-native/metro/withStorybook');
 
 const root = path.resolve(__dirname, '..');
 
@@ -16,7 +15,4 @@ const config = withMetroConfig(getDefaultConfig(__dirname), {
   dirname: __dirname,
 });
 
-module.exports = withStorybook(config, {
-  enabled: true,
-  configPath: path.resolve(__dirname, './.rnstorybook'),
-});
+module.exports = config;
