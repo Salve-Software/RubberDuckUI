@@ -60,7 +60,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@salve-software/ai-workers": "github:Salve-Software/AIWorkers",
+    "@salve-software/ai-workers": "github:Salve-Software/AIWorkers#feat/rn-component-scaffold",
     "lucide-react-native": "^0.577.0",
     "zustand": "^5.0.11"
   },
@@ -73,8 +73,10 @@
     "@react-native/eslint-config": "0.83.0",
     "@release-it/conventional-changelog": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.1.12",
+    "@types/react-test-renderer": "^19",
     "commitlint": "^19.8.1",
     "del-cli": "^6.0.0",
     "eslint": "^9.35.0",
@@ -88,8 +90,10 @@
     "react-content-loader": "^7.1.2",
     "react-native": "0.83.2",
     "react-native-builder-bob": "^0.40.18",
+    "react-native-mask-input": "^1.2.3",
     "react-native-reanimated": "^4.2.2",
     "react-native-svg": "^15.15.3",
+    "react-test-renderer": "19.2.0",
     "release-it": "^19.0.4",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
@@ -99,6 +103,7 @@
     "react": "*",
     "react-content-loader": "*",
     "react-native": "*",
+    "react-native-mask-input": ">=1.2.0",
     "react-native-reanimated": ">=4.0.0",
     "react-native-svg": "*",
     "react-native-worklets": ">=0.4.0"
@@ -127,6 +132,15 @@
   },
   "jest": {
     "preset": "react-native",
+    "setupFiles": [
+      "./jest.setup.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|lucide-react-native)/)"
+    ],
+    "moduleNameMapper": {
+      "^react-native-reanimated$": "<rootDir>/__mocks__/react-native-reanimated.ts"
+    },
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
