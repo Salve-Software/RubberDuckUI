@@ -87,3 +87,6 @@ nitrogen/
 
 *storybook.log
 storybook-static
+
+# AIWorkers generated symlinks
+.claude/*/aiworkers/
