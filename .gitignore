@@ -84,3 +84,9 @@ android/generated
 
 # React Native Nitro Modules
 nitrogen/
+
+*storybook.log
+storybook-static
+
+# AIWorkers generated symlinks
+.claude/*/aiworkers/

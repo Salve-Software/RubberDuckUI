@@ -1,12 +1,22 @@
 {
-  "name": "react-native-rubber-duck-ui",
+  "name": "rubber-duck-ui",
   "version": "0.1.0",
   "description": "A reusable design system to keep UI consistent across projects.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
+  "scripts": {
+    "example": "yarn prepare && yarn workspace rubber-duck-ui-example",
+    "clean": "del-cli lib",
+    "prepare": "bob build",
+    "typecheck": "tsc",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "test": "jest",
+    "release": "release-it --only-version",
+    "setup:aiworkers": "bash node_modules/@salve-software/ai-workers/scripts/setup.sh"
+  },
   "exports": {
     ".": {
-      "source": "./src/index.tsx",
+      "source": "./src/index.ts",
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
@@ -31,15 +41,6 @@
     "!**/__mocks__",
     "!**/.*"
   ],
-  "scripts": {
-    "example": "yarn workspace react-native-rubber-duck-ui-example",
-    "clean": "del-cli lib",
-    "prepare": "bob build",
-    "typecheck": "tsc",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "test": "jest",
-    "release": "release-it --only-version"
-  },
   "keywords": [
     "react-native",
     "ios",
@@ -47,16 +48,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eumaninho54/react-native-rubber-duck-ui.git"
+    "url": "git+https://github.com/Salve-Software/RubberDuckUI.git"
   },
   "author": "eumaninho54 <angelo.omarzinho@outlook.com> (https://github.com/eumaninho54)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eumaninho54/react-native-rubber-duck-ui/issues"
+    "url": "https://github.com/Salve-Software/RubberDuckUI/issues"
   },
-  "homepage": "https://github.com/eumaninho54/react-native-rubber-duck-ui#readme",
+  "homepage": "https://github.com/Salve-Software/RubberDuckUI#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@salve-software/ai-workers": "github:Salve-Software/AIWorkers#feat/rn-component-scaffold",
+    "lucide-react-native": "^0.577.0",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.1",
@@ -66,8 +72,11 @@
     "@react-native/babel-preset": "0.83.0",
     "@react-native/eslint-config": "0.83.0",
     "@release-it/conventional-changelog": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.1.12",
+    "@types/react-test-renderer": "^19",
     "commitlint": "^19.8.1",
     "del-cli": "^6.0.0",
     "eslint": "^9.35.0",
@@ -75,17 +84,29 @@
     "eslint-plugin-prettier": "^5.5.4",
     "jest": "^29.7.0",
     "lefthook": "^2.0.3",
+    "lottie-react-native": "^7.3.6",
     "prettier": "^2.8.8",
     "react": "19.2.0",
+    "react-content-loader": "^7.1.2",
     "react-native": "0.83.2",
     "react-native-builder-bob": "^0.40.18",
+    "react-native-mask-input": "^1.2.3",
+    "react-native-reanimated": "^4.2.2",
+    "react-native-svg": "^15.15.3",
+    "react-test-renderer": "19.2.0",
     "release-it": "^19.0.4",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
   },
   "peerDependencies": {
+    "lottie-react-native": "*",
     "react": "*",
-    "react-native": "*"
+    "react-content-loader": "*",
+    "react-native": "*",
+    "react-native-mask-input": ">=1.2.0",
+    "react-native-reanimated": ">=4.0.0",
+    "react-native-svg": "*",
+    "react-native-worklets": ">=0.4.0"
   },
   "workspaces": [
     "example"
@@ -109,15 +130,17 @@
       ]
     ]
   },
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
-  },
   "jest": {
     "preset": "react-native",
+    "setupFiles": [
+      "./jest.setup.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|lucide-react-native)/)"
+    ],
+    "moduleNameMapper": {
+      "^react-native-reanimated$": "<rootDir>/__mocks__/react-native-reanimated.ts"
+    },
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
