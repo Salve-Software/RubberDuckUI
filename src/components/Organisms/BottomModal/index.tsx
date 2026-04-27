@@ -68,6 +68,3 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
   );
 };
 
-export { BottomModalApi } from './controllers';
-export type { IBottomModalApi } from './controllers/BottomModalApi/types';
-export type { IBottomModalProps, IBottomModalRefProps, IModalListItem, ModalListItemType, IEmptyStateProps } from './types';
