@@ -238,3 +238,90 @@ import { MoneyField } from 'rubber-duck-ui'
 | `isRequired` | `boolean` | `false` |
 | `isReadOnly` | `boolean` | `false` |
 | `isDisabled` | `boolean` | `false` |
+
+---
+
+## BottomModal
+
+Imperative bottom sheet organism backed by `@gorhom/bottom-sheet`. Controlled via the static `BottomModalApi` class — no props needed at the call site.
+
+Mount `<RubberDuckUIProvider>` once at the app root (it mounts `BottomModal` internally). Then trigger it from anywhere:
+
+```tsx
+import { BottomModalApi } from 'rubber-duck-ui'
+
+BottomModalApi.open({
+  title: 'Options',
+  items: [
+    { id: '1', type: 'icon', title: 'Edit', iconName: 'Pencil', onPress: () => {} },
+    { id: '2', type: 'icon', title: 'Delete', iconName: 'Trash2', isDanger: true, onPress: () => {} },
+  ],
+})
+
+BottomModalApi.dismiss()
+```
+
+### BottomModalApi methods
+
+| Method | Signature | Description |
+|---|---|---|
+| `open` | `(props: IBottomModalRefProps) => void` | Opens the sheet with the given props |
+| `dismiss` | `() => void` | Dismisses the sheet |
+
+### IBottomModalRefProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | required | Header title |
+| `items` | `IModalListItem[]` | required | List of items to render |
+| `emptyState` | `IEmptyStateProps` | — | Shown when `items` is empty |
+| `onClear` | `() => void` | — | Renders a clear button in the header when provided |
+| `clearLabel` | `string` | `'Clear'` | Label for the clear button |
+
+### IModalListItem
+
+| Prop | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | ✓ | Unique key |
+| `type` | `'checkbox' \| 'radio' \| 'avatar' \| 'icon'` | ✓ | Row renderer variant |
+| `title` | `string` | ✓ | Primary label |
+| `subTitle` | `string` | — | Secondary label |
+| `onPress` | `() => void` | ✓ | Action fired on press |
+| `isChecked` | `boolean` | — | Checked state (`checkbox` / `radio`) |
+| `isDanger` | `boolean` | — | Renders title and icon in `error` color (`icon` type) |
+| `keepOpen` | `boolean` | — | If `true`, fires `onPress` immediately without dismissing the sheet |
+| `iconName` | `IconName` | — | Lucide icon name (required when `type === 'icon'`) |
+| `avatarSource` | `ImageSourcePropType` | — | Image source (used when `type === 'avatar'`) |
+
+### IEmptyStateProps
+
+| Prop | Type | Description |
+|---|---|---|
+| `message` | `string` | Message shown when list is empty. Defaults to `'No items'` |
+| `iconName` | `IconName` | Optional Lucide icon shown below the message |
+
+### Item types
+
+**`icon`** — row with a Lucide icon and a text label. Set `isDanger: true` for destructive actions.
+
+```tsx
+{ id: '1', type: 'icon', title: 'Delete', iconName: 'Trash2', isDanger: true, onPress: () => {} }
+```
+
+**`checkbox`** — uses the DS `CheckBox` molecule. Use `keepOpen: true` to let the user toggle multiple items before dismissing.
+
+```tsx
+{ id: '1', type: 'checkbox', title: 'Active', isChecked: true, onPress: () => {}, keepOpen: true }
+```
+
+**`radio`** — uses the DS `RadioButton` molecule. Supports `subTitle` for secondary context.
+
+```tsx
+{ id: '1', type: 'radio', title: 'Newest first', subTitle: 'Sort by date', isChecked: true, onPress: () => {} }
+```
+
+**`avatar`** — row with a `Avatar` molecule, title and optional subtitle. Falls back to initials when `avatarSource` is not provided.
+
+```tsx
+{ id: '1', type: 'avatar', title: 'Ana Lima', subTitle: 'Designer', avatarSource: { uri: '...' }, onPress: () => {} }
+```
