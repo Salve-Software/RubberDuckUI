@@ -275,8 +275,6 @@ BottomModalApi.dismiss()
 | `title` | `string` | required | Header title |
 | `items` | `IModalListItem[]` | required | List of items to render |
 | `emptyState` | `IEmptyStateProps` | — | Shown when `items` is empty |
-| `onClear` | `() => void` | — | Renders a clear button in the header when provided |
-| `clearLabel` | `string` | `'Clear'` | Label for the clear button |
 
 ### IModalListItem
 

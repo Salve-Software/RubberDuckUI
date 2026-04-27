@@ -5,6 +5,4 @@ export interface IBottomModalRefProps {
   title: string;
   items: IModalListItem[];
   emptyState?: IEmptyStateProps;
-  onClear?: () => void;
-  clearLabel?: string;
 }
