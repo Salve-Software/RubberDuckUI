@@ -1,7 +1,6 @@
 import React, {
   useCallback,
   useEffect,
-  useImperativeHandle,
   useRef,
 } from 'react';
 import { TouchableOpacity, View, useWindowDimensions } from 'react-native';
@@ -24,26 +23,20 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
   const styles = useStyles();
 
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const imperativeRef = useRef<IBottomModalApi>(null);
+  const imperativeRef = useRef<IBottomModalApi | null>(null);
 
   const {
     bottomModalProps,
-    setProps,
-    present,
+    open,
     dismiss,
     onDismiss,
     handleSetOnHideCallback,
   } = useBottomModalViewModel(bottomSheetRef);
 
-  useImperativeHandle(
-    imperativeRef,
-    () => ({ setProps, present, dismiss }),
-    [setProps, present, dismiss]
-  );
-
   useEffect(() => {
+    imperativeRef.current = { open, dismiss };
     BottomModalApi.setRef(imperativeRef);
-  }, []);
+  }, [open, dismiss]);
 
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) =>
@@ -57,8 +50,6 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
     []
   );
 
-  if (!bottomModalProps) { return null; }
-
   return (
     <BottomSheetModal
       ref={bottomSheetRef}
@@ -71,26 +62,32 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
       enablePanDownToClose
     >
       <BottomSheetView>
-        <View style={styles.header}>
-          <Text weight="semibold">{bottomModalProps.title}</Text>
-          {bottomModalProps.onClear
-            ?
-            <TouchableOpacity
-              onPress={bottomModalProps.onClear}
-              style={styles.clearButton}>
-              <Text color="accent" size="sm">
-                {bottomModalProps.clearLabel ?? 'Clear'}
-              </Text>
-            </TouchableOpacity>
-            : null
-          }
-        </View>
-        <ModalList
-          items={bottomModalProps.items}
-          emptyState={bottomModalProps.emptyState}
-          setOnHideCallback={handleSetOnHideCallback}
-          onClose={dismiss}
-        />
+        {bottomModalProps
+          ?
+          <>
+            <View style={styles.header}>
+              <Text weight="semibold">{bottomModalProps.title}</Text>
+              {bottomModalProps.onClear
+                ?
+                <TouchableOpacity
+                  onPress={bottomModalProps.onClear}
+                  style={styles.clearButton}>
+                  <Text color="accent" size="sm">
+                    {bottomModalProps.clearLabel ?? 'Clear'}
+                  </Text>
+                </TouchableOpacity>
+                : null
+              }
+            </View>
+            <ModalList
+              items={bottomModalProps.items}
+              emptyState={bottomModalProps.emptyState}
+              setOnHideCallback={handleSetOnHideCallback}
+              onClose={dismiss}
+            />
+          </>
+          : null
+        }
       </BottomSheetView>
     </BottomSheetModal>
   );

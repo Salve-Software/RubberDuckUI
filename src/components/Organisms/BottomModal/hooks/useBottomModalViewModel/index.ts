@@ -9,12 +9,11 @@ export const useBottomModalViewModel = (
   const [bottomModalProps, setBottomModalPropsState] = useState<IBottomModalRefProps | undefined>();
   const onHideCallback = useRef<() => void>(() => {});
 
-  const setProps = useCallback((props: IBottomModalRefProps) => {
+  const open = useCallback((props: IBottomModalRefProps) => {
     setBottomModalPropsState(props);
-  }, []);
-
-  const present = useCallback(() => {
-    bottomSheetRef.current?.present();
+    requestAnimationFrame(() => {
+      bottomSheetRef.current?.present();
+    });
   }, [bottomSheetRef]);
 
   const dismiss = useCallback(() => {
@@ -32,8 +31,7 @@ export const useBottomModalViewModel = (
 
   return {
     bottomModalProps,
-    setProps,
-    present,
+    open,
     dismiss,
     onDismiss,
     handleSetOnHideCallback,
