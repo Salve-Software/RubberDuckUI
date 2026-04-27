@@ -1,34 +1,36 @@
-# RubberDuckUI �
+# RubberDuckUI
 
-A minimal, dark-first React Native design system with a yellow duck accent.
+A minimal, dark-first React Native design system built for internal use. Ships with a yellow duck accent, Geist typography, and a token-based theming system.
 
 ---
 
 ## Requirements
 
-- React Native >= 0.72
-- react-native-svg >= 13.0.0 (required by Lucide icons)
+Peer dependencies that must be installed in the consuming app:
 
----
-
-## Installation
-```bash
-npm install rubber-duck-ui
+```
+react >= 19
+react-native >= 0.83
+lottie-react-native
+react-content-loader
+react-native-mask-input >= 1.2.0
+react-native-reanimated >= 4.0.0
+react-native-svg
 ```
 
 ---
 
 ## Font Setup
 
-RubberDuckUI uses [Geist Sans](https://vercel.com/font) and [Geist Mono](https://vercel.com/font) as its default typefaces.
+RubberDuckUI uses [Geist Sans](https://vercel.com/font) and [Geist Mono](https://vercel.com/font).
 
-### 1. Download the font files
+**1. Download the `.ttf` files** and place them in your app:
 
-Download the `.ttf` files from [vercel.com/font](https://vercel.com/font) and place them in your project:
 ```
 your-app/
 └── assets/
     └── fonts/
+        ├── Geist-Light.ttf
         ├── Geist-Regular.ttf
         ├── Geist-Medium.ttf
         ├── Geist-SemiBold.ttf
@@ -36,60 +38,88 @@ your-app/
         └── GeistMono-Regular.ttf
 ```
 
-### 2. Configure react-native.config.js
+**2. Add to `react-native.config.js`:**
 
-Create or update `react-native.config.js` at the root of your project:
 ```js
 module.exports = {
   assets: ['./assets/fonts'],
 }
 ```
 
-### 3. Link the fonts
+**3. Link the assets:**
+
 ```bash
 npx react-native-asset
 ```
 
-This will automatically copy the font files into the correct native directories for both Android and iOS.
-
 ---
 
-## Usage
+## Configuration
 
-### Using components
+Initialize the design system once at the root of your app (e.g. `App.tsx`):
+
 ```tsx
-import { Button, Text } from 'rubber-duck-ui'
+import { RubberDuckUI } from 'rubber-duck-ui'
 
-export function MyScreen() {
-  return (
-    <>
-      <Text variant="heading1">Hello, world!</Text>
-      <Button label="Get started" onPress={() => {}} />
-    </>
-  )
-}
-```
-
----
-
-## Theming
-
-RubberDuckUI ships with a dark theme by default, using yellow (`#FFD600`) as the accent color — inspired by the rubber duck, the developer's best debugging companion.
-
-You can override any token by passing a partial theme object to `RubberDuckUI.configure()`:
-```tsx
 RubberDuckUI.configure({
+  darkMode: true,
   colors: {
-    accent: '#E91E63',
-    background: '#0D0D0D',
+    accent: '#FFD600',
   },
 })
 ```
 
-To reset to the default duck theme:
+To reset to defaults:
+
 ```tsx
 RubberDuckUI.reset()
 ```
+
+---
+
+## Components
+
+| Component | Description |
+|---|---|
+| `Text` | Styled text with size, weight, color and alignment props |
+| `Icon` | Lucide icon renderer with token-based sizing and color |
+| `Loading` | Lottie-powered animated spinner |
+| `Avatar` | User avatar with image or initials fallback and skeleton state |
+| `CheckBox` | Animated checkbox with optional title and subtitle |
+| `RadioButton` | Animated radio button with optional title and subtitle |
+| `SimpleText` | Single-line text input with animated focus state |
+| `MultilineText` | Multi-line textarea with animated focus state |
+| `NumberField` | Numeric input with optional right-side unit label |
+| `MoneyField` | Currency input with configurable symbol, separators and precision |
+
+Full props reference → [docs/components.md](./docs/components.md)
+
+---
+
+## Tokens
+
+The `Tokens` class gives direct access to all design tokens:
+
+```tsx
+import { Tokens } from 'rubber-duck-ui'
+
+Tokens.color({ key: 'accent' })
+Tokens.spacer({ key: 'md' })
+Tokens.radii({ key: 'sm' })
+Tokens.fontSize({ key: 'lg' })
+Tokens.fontWeight({ key: 'semibold' })
+Tokens.fontFamily({ key: 'sans', weight: 'medium' })
+```
+
+To access theme colors reactively inside components, use the `useTheme` hook:
+
+```tsx
+import { useTheme } from 'rubber-duck-ui'
+
+const { colors } = useTheme()
+```
+
+Full token reference → [docs/tokens.md](./docs/tokens.md)
 
 ---
 
