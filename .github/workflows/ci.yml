@@ -17,6 +17,8 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
+        with:
+          token: ${{ secrets.GH_PAT }}
 
       - name: Run unit tests
         run: yarn test --maxWorkers=2 --coverage
