@@ -20,6 +20,7 @@ export const mountRenderItem = ({ styles, setOnHideCallback, onClose }: IMountRe
   return ({ item }) => {
     const onPressItem = () => {
       if (item.keepOpen) {
+        setOnHideCallback(() => {});
         item.onPress();
       } else {
         setOnHideCallback(() => item.onPress());
@@ -30,26 +31,22 @@ export const mountRenderItem = ({ styles, setOnHideCallback, onClose }: IMountRe
     switch (item.type) {
       case 'checkbox':
         return (
-          <TouchableOpacity onPress={onPressItem}>
-            <CheckBox
-              title={item.title}
-              subTitle={item.subTitle}
-              isChecked={item.isChecked}
-              onPress={onPressItem}
-            />
-          </TouchableOpacity>
+          <CheckBox
+            title={item.title}
+            subTitle={item.subTitle}
+            isChecked={item.isChecked}
+            onPress={onPressItem}
+          />
         );
 
       case 'radio':
         return (
-          <TouchableOpacity onPress={onPressItem}>
-            <RadioButton
-              title={item.title}
-              subTitle={item.subTitle}
-              isChecked={item.isChecked}
-              onPress={onPressItem}
-            />
-          </TouchableOpacity>
+          <RadioButton
+            title={item.title}
+            subTitle={item.subTitle}
+            isChecked={item.isChecked}
+            onPress={onPressItem}
+          />
         );
 
       case 'avatar':
@@ -64,10 +61,11 @@ export const mountRenderItem = ({ styles, setOnHideCallback, onClose }: IMountRe
         );
 
       case 'icon':
+        if (!item.iconName) { return null; }
         return (
           <TouchableOpacity style={styles.itemWrapper} onPress={onPressItem}>
             <Icon
-              icon={item.iconName!}
+              icon={item.iconName}
               size="tiny_20"
               color={item.isDanger ? 'error' : 'textPrimary'}
             />
