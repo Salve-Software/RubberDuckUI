@@ -11,7 +11,6 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
-    "release": "release-it --only-version",
     "setup:aiworkers": "bash node_modules/@salve-software/ai-workers/scripts/setup.sh"
   },
   "exports": {
@@ -22,43 +21,12 @@
     },
     "./package.json": "./package.json"
   },
-  "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "react-native.config.js",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
-  ],
-  "keywords": [
-    "react-native",
-    "ios",
-    "android"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Salve-Software/RubberDuckUI.git"
   },
   "author": "eumaninho54 <angelo.omarzinho@outlook.com> (https://github.com/eumaninho54)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Salve-Software/RubberDuckUI/issues"
-  },
-  "homepage": "https://github.com/Salve-Software/RubberDuckUI#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "dependencies": {
     "@salve-software/ai-workers": "github:Salve-Software/AIWorkers#feat/rn-component-scaffold",
     "lucide-react-native": "^0.577.0",
@@ -71,7 +39,6 @@
     "@eslint/js": "^9.35.0",
     "@react-native/babel-preset": "0.83.0",
     "@react-native/eslint-config": "0.83.0",
-    "@release-it/conventional-changelog": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
@@ -94,7 +61,6 @@
     "react-native-reanimated": "^4.2.2",
     "react-native-svg": "^15.15.3",
     "react-test-renderer": "19.2.0",
-    "release-it": "^19.0.4",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
   },
@@ -150,35 +116,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": {
-          "name": "angular"
-        }
-      }
-    }
-  },
-  "create-react-native-library": {
-    "type": "library",
-    "languages": "js",
-    "tools": [
-      "eslint",
-      "jest",
-      "lefthook",
-      "release-it"
-    ],
-    "version": "0.57.2"
   }
 }
