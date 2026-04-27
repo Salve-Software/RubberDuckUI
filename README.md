@@ -79,11 +79,18 @@ RubberDuckUI.reset()
 
 ## Components
 
+**Atoms** — primitivos isolados, sem composição de outros componentes da lib:
+
 | Component | Description |
 |---|---|
 | `Text` | Styled text with size, weight, color and alignment props |
 | `Icon` | Lucide icon renderer with token-based sizing and color |
 | `Loading` | Lottie-powered animated spinner |
+
+**Molecules** — combinam atoms para formar elementos de UI completos:
+
+| Component | Description |
+|---|---|
 | `Avatar` | User avatar with image or initials fallback and skeleton state |
 | `CheckBox` | Animated checkbox with optional title and subtitle |
 | `RadioButton` | Animated radio button with optional title and subtitle |
