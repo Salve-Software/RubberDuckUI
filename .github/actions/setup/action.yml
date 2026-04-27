@@ -11,7 +11,9 @@ runs:
   steps:
     - name: Configure git credentials
       if: inputs.token != ''
-      run: git config --global url."https://${{ inputs.token }}@github.com/".insteadOf "https://github.com/"
+      run: |
+        echo "machine github.com login x-access-token password ${{ inputs.token }}" >> ~/.netrc
+        chmod 600 ~/.netrc
       shell: bash
 
     - name: Setup Node.js
