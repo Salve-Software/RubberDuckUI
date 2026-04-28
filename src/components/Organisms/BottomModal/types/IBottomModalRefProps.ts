@@ -1,8 +1,5 @@
-import type { IModalListItem } from './IModalListItem';
-import type { IEmptyStateProps } from './IEmptyStateProps';
+import type { ReactNode } from 'react';
 
 export interface IBottomModalRefProps {
-  title: string;
-  items: IModalListItem[];
-  emptyState?: IEmptyStateProps;
+  content: ReactNode;
 }

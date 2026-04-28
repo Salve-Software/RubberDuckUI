@@ -12,5 +12,7 @@ export class BottomModalApi {
   static open = (props: IBottomModalRefProps) =>
     this.ref?.current?.open(props);
 
-  static dismiss = () => this.ref?.current?.dismiss();
+  static dismiss = () => {
+    this.ref?.current?.dismiss();
+  }
 }

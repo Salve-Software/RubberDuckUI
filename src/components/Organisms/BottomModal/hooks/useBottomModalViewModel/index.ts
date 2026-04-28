@@ -1,39 +1,32 @@
-import { useState, useRef, useCallback } from 'react';
-import type { RefObject } from 'react';
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import type { IBottomModalRefProps } from '../../types';
+import { BottomModalApi, type IBottomModalApi } from '../../controllers';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
-export const useBottomModalViewModel = (
-  bottomSheetRef: RefObject<BottomSheetModal | null>
-) => {
+export const useBottomModalViewModel = () => {
   const [bottomModalProps, setBottomModalPropsState] = useState<IBottomModalRefProps | undefined>();
-  const onHideCallback = useRef<() => void>(() => {});
+  
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const imperativeRef = useRef<IBottomModalApi | null>(null);
 
   const open = useCallback((props: IBottomModalRefProps) => {
     setBottomModalPropsState(props);
     requestAnimationFrame(() => {
       bottomSheetRef.current?.present();
     });
-  }, [bottomSheetRef]);
+  }, []);
 
   const dismiss = useCallback(() => {
     bottomSheetRef.current?.dismiss();
-  }, [bottomSheetRef]);
-
-  const onDismiss = useCallback(() => {
-    onHideCallback.current();
-    onHideCallback.current = () => {};
   }, []);
 
-  const handleSetOnHideCallback = useCallback((cb: () => void) => {
-    onHideCallback.current = cb;
-  }, []);
+  useEffect(() => {
+    imperativeRef.current = { open, dismiss };
+    BottomModalApi.setRef(imperativeRef);
+  }, [open, dismiss]);
 
   return {
+    bottomSheetRef,
     bottomModalProps,
-    open,
-    dismiss,
-    onDismiss,
-    handleSetOnHideCallback,
   };
 };
