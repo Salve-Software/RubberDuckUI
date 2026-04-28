@@ -57,6 +57,7 @@ export const MultilineText: React.FC<IMultilineTextProps> = (props) => {
 
       <Animated.View style={[styles.inputWrapper, reanimatedStyles.inputWrapper]}>
         <TextInput
+          testID="multiline-text-input"
           style={styles.textInput}
           value={value}
           onChangeText={onChangeText}
