@@ -53,7 +53,7 @@ describe('BottomListModal/ModalList/mountRenderItem', () => {
         id: '1', type: 'checkbox', title: 'Active', isChecked: false, keepOpen: false, onPress: jest.fn(),
       });
 
-      (element as any).props.onPress();
+      (element as any).props.children.props.onPress();
 
       expect(dismissSpy).toHaveBeenCalledTimes(1);
     });
@@ -64,7 +64,7 @@ describe('BottomListModal/ModalList/mountRenderItem', () => {
         id: '1', type: 'checkbox', title: 'Active', isChecked: false, keepOpen: true, onPress,
       });
 
-      (element as any).props.onPress();
+      (element as any).props.children.props.onPress();
 
       expect(onPress).toHaveBeenCalledTimes(1);
       expect(dismissSpy).not.toHaveBeenCalled();
@@ -94,7 +94,7 @@ describe('BottomListModal/ModalList/mountRenderItem', () => {
       });
 
       expect(element).not.toBeNull();
-      expect(typeof (element as any).props.onPress).toBe('function');
+      expect(typeof (element as any).props.children.props.onPress).toBe('function');
     });
 
     it('Returns an element with an onPress handler for the radio variant', () => {
@@ -103,7 +103,7 @@ describe('BottomListModal/ModalList/mountRenderItem', () => {
       });
 
       expect(element).not.toBeNull();
-      expect(typeof (element as any).props.onPress).toBe('function');
+      expect(typeof (element as any).props.children.props.onPress).toBe('function');
     });
 
     it('Returns an element with an onPress handler for the avatar variant', () => {

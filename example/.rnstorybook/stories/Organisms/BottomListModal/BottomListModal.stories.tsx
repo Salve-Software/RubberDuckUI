@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { BottomListModalApi } from 'rubber-duck-ui';
 import { styles } from './BottomListModal.styles';
@@ -29,41 +29,64 @@ const IconItemsDemo = () => (
   </View>
 );
 
-const CheckboxItemsDemo = () => (
-  <View style={styles.container}>
-    <Trigger
-      label="Open — checkbox items"
-      onPress={() =>
-        BottomListModalApi.open({
-          title: 'Filters',
-          items: [
-            { id: '1', type: 'checkbox', title: 'Active', isChecked: true, onPress: () => {}, keepOpen: true },
-            { id: '2', type: 'checkbox', title: 'Inactive', isChecked: false, onPress: () => {}, keepOpen: true },
-            { id: '3', type: 'checkbox', title: 'Archived', isChecked: false, onPress: () => {}, keepOpen: true },
-          ],
-        })
-      }
-    />
-  </View>
-);
+const CheckboxItemsDemo = () => {
+  const [checked, setChecked] = useState<Record<string, boolean>>({
+    '1': true,
+    '2': false,
+    '3': false,
+  });
 
-const RadioItemsDemo = () => (
-  <View style={styles.container}>
-    <Trigger
-      label="Open — radio items"
-      onPress={() =>
-        BottomListModalApi.open({
-          title: 'Sort by',
-          items: [
-            { id: '1', type: 'radio', title: 'Name', subTitle: 'A to Z', isChecked: true, onPress: () => {}, keepOpen: true },
-            { id: '2', type: 'radio', title: 'Date', subTitle: 'Newest first', isChecked: false, onPress: () => {}, keepOpen: true },
-            { id: '3', type: 'radio', title: 'Status', isChecked: false, onPress: () => {}, keepOpen: true },
-          ],
-        })
-      }
-    />
-  </View>
-);
+  const openModal = (state: Record<string, boolean>) => {
+    BottomListModalApi.open({
+      title: 'Filters',
+      items: [
+        { id: '1', type: 'checkbox', title: 'Active', isChecked: state['1'], onPress: () => toggle('1'), keepOpen: true },
+        { id: '2', type: 'checkbox', title: 'Inactive', isChecked: state['2'], onPress: () => toggle('2'), keepOpen: true },
+        { id: '3', type: 'checkbox', title: 'Archived', isChecked: state['3'], onPress: () => toggle('3'), keepOpen: true },
+      ],
+    });
+  };
+
+  const toggle = (id: string) => {
+    setChecked((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      openModal(next);
+      return next;
+    });
+  };
+
+  return (
+    <View style={styles.container}>
+      <Trigger label="Open — checkbox items" onPress={() => openModal(checked)} />
+    </View>
+  );
+};
+
+const RadioItemsDemo = () => {
+  const [selected, setSelected] = useState<string>('1');
+
+  const openModal = (state: string) => {
+    BottomListModalApi.open({
+      title: 'Sort by',
+      items: [
+        { id: '1', type: 'radio', title: 'Name', subTitle: 'A to Z', isChecked: state === '1', onPress: () => select('1'), keepOpen: true },
+        { id: '2', type: 'radio', title: 'Date', subTitle: 'Newest first', isChecked: state === '2', onPress: () => select('2'), keepOpen: true },
+        { id: '3', type: 'radio', title: 'Status', isChecked: state === '3', onPress: () => select('3'), keepOpen: true },
+      ],
+    });
+  };
+
+  const select = (id: string) => {
+    setSelected(id);
+    openModal(id);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Trigger label="Open — radio items" onPress={() => openModal(selected)} />
+    </View>
+  );
+};
 
 const AvatarItemsDemo = () => (
   <View style={styles.container}>

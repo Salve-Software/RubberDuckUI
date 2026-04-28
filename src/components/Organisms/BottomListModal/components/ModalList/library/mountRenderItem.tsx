@@ -30,22 +30,26 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
     switch (item.type) {
       case 'checkbox':
         return (
-          <CheckBox
-            title={item.title}
-            subTitle={item.subTitle}
-            isChecked={item.isChecked}
-            onPress={onPressItem}
-          />
+          <View style={styles.itemWrapper}>
+            <CheckBox
+              title={item.title}
+              subTitle={item.subTitle}
+              isChecked={item.isChecked}
+              onPress={onPressItem}
+            />
+          </View>
         );
 
       case 'radio':
         return (
-          <RadioButton
-            title={item.title}
-            subTitle={item.subTitle}
-            isChecked={item.isChecked}
-            onPress={onPressItem}
-          />
+          <View style={styles.itemWrapper}>
+            <RadioButton
+              title={item.title}
+              subTitle={item.subTitle}
+              isChecked={item.isChecked}
+              onPress={onPressItem}
+            />
+          </View>
         );
 
       case 'avatar':
