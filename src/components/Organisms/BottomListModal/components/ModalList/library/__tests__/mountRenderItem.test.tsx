@@ -3,7 +3,7 @@ import type { ListRenderItemInfo } from 'react-native';
 import { BottomModalApi } from '../../../../../BottomModal/controllers';
 import { mountRenderItem } from '../mountRenderItem';
 
-const styles = { itemWrapper: {}, textWrapper: {} };
+const styles = { itemWrapper: {}, selectableItemWrapper: {}, textWrapper: {} };
 
 const separators: ListRenderItemInfo<IModalListItem>['separators'] = {
   highlight: jest.fn(),
