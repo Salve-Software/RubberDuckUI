@@ -110,7 +110,6 @@ jobs:
 
       - name: Merge PR
         run: |
-          sleep 15
           gh pr merge ${{ env.PR_NUMBER }} \
             --merge \
             --repo ${{ github.repository }}
