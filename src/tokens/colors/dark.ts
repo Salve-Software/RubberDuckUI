@@ -1,0 +1,25 @@
+import type { IColors } from './types';
+
+export const dark: IColors = {
+  accent: '#FFD600',
+  accentLight: '#FFE033',
+  accentDark: '#CCB000',
+  accentMuted: '#FFD60021',
+  background: '#0A0A0A',
+  surface: '#111111',
+  surfaceRaised: '#1A1A1A',
+  surfaceOverlay: '#222222',
+  textPrimary: '#F5F5F5',
+  textSecondary: '#A0A0A0',
+  textDisabled: '#555555',
+  textInverse: '#0A0A0A',
+  borderSubtle: '#2A2A2A',
+  borderDefault: '#3A3A3A',
+  borderStrong: '#555555',
+  success: '#22C55E',
+  error: '#EF4444',
+  warning: '#F97316',
+  info: '#3B82F6',
+  white: "#FAFAFA",
+  black: "#181717",
+};
