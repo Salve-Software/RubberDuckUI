@@ -110,13 +110,10 @@ jobs:
 
       - name: Merge PR
         run: |
-          for i in 1 2 3 4 5; do
-            gh pr merge ${{ env.PR_NUMBER }} \
-              --merge \
-              --repo ${{ github.repository }} && break
-            echo "Attempt $i failed, retrying in 10s..."
-            sleep 10
-          done
+          sleep 15
+          gh pr merge ${{ env.PR_NUMBER }} \
+            --merge \
+            --repo ${{ github.repository }}
 
       - name: Tag merge commit on main
         run: |
