@@ -243,7 +243,7 @@ import { MoneyField } from 'rubber-duck-ui'
 
 ## BottomModal
 
-Imperative bottom sheet organism backed by `@gorhom/bottom-sheet`. Controlled via the static `BottomModalApi` class — no props needed at the call site.
+Generic imperative bottom sheet organism backed by `@gorhom/bottom-sheet`. Renders any JSX as content. Controlled via the static `BottomModalApi` class.
 
 Mount `<RubberDuckUIProvider>` once at the app root (it mounts `BottomModal` internally). Then trigger it from anywhere:
 
@@ -251,6 +251,39 @@ Mount `<RubberDuckUIProvider>` once at the app root (it mounts `BottomModal` int
 import { BottomModalApi } from 'rubber-duck-ui'
 
 BottomModalApi.open({
+  content: <MyCustomForm />,
+})
+
+BottomModalApi.dismiss()
+```
+
+The consumer owns the inner content and is responsible for the wrapper type:
+- Static, short content → wrap in `BottomSheetView` from `@gorhom/bottom-sheet`.
+- Scrollable content → use `BottomSheetFlatList` / `BottomSheetScrollView` directly. Do **not** wrap a scrollable in `BottomSheetView` — `enableDynamicSizing` will fail to measure it.
+
+### BottomModalApi methods
+
+| Method | Signature | Description |
+|---|---|---|
+| `open` | `(props: IBottomModalRefProps) => void` | Opens the sheet with the given content |
+| `dismiss` | `() => void` | Dismisses the sheet |
+
+### IBottomModalRefProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | `ReactNode` | required | JSX to render inside the sheet |
+
+---
+
+## BottomListModal
+
+Imperative list-style bottom sheet — title sticky on top, virtualized item list below. Built on top of `BottomModal`. Controlled via the static `BottomListModalApi` class.
+
+```tsx
+import { BottomListModalApi } from 'rubber-duck-ui'
+
+BottomListModalApi.open({
   title: 'Options',
   items: [
     { id: '1', type: 'icon', title: 'Edit', iconName: 'Pencil', onPress: () => {} },
@@ -258,23 +291,22 @@ BottomModalApi.open({
   ],
 })
 
-BottomModalApi.dismiss()
+BottomListModalApi.dismiss()
 ```
 
-### BottomModalApi methods
+### BottomListModalApi methods
 
 | Method | Signature | Description |
 |---|---|---|
-| `open` | `(props: IBottomModalRefProps) => void` | Opens the sheet with the given props |
+| `open` | `(props: IBottomListModalRefProps) => void` | Opens the list sheet with the given props |
 | `dismiss` | `() => void` | Dismisses the sheet |
 
-### IBottomModalRefProps
+### IBottomListModalRefProps
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | required | Header title |
+| `title` | `string` | required | Header title (sticky on top) |
 | `items` | `IModalListItem[]` | required | List of items to render |
-| `emptyState` | `IEmptyStateProps` | — | Shown when `items` is empty |
 
 ### IModalListItem
 
@@ -290,13 +322,6 @@ BottomModalApi.dismiss()
 | `keepOpen` | `boolean` | — | If `true`, fires `onPress` immediately without dismissing the sheet |
 | `iconName` | `IconName` | — | Lucide icon name (required when `type === 'icon'`) |
 | `avatarSource` | `ImageSourcePropType` | — | Image source (used when `type === 'avatar'`) |
-
-### IEmptyStateProps
-
-| Prop | Type | Description |
-|---|---|---|
-| `message` | `string` | Message shown when list is empty. Defaults to `'No items'` |
-| `iconName` | `IconName` | Optional Lucide icon shown below the message |
 
 ### Item types
 
