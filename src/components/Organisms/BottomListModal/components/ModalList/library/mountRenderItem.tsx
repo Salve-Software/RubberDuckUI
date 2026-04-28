@@ -11,6 +11,7 @@ import { BottomModalApi } from '../../../../BottomModal/controllers';
 interface IMountRenderItemParams {
   styles: {
     itemWrapper: object;
+    selectableItemWrapper: object;
     textWrapper: object;
   };
 }
@@ -30,7 +31,7 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
     switch (item.type) {
       case 'checkbox':
         return (
-          <View style={styles.itemWrapper}>
+          <View style={styles.selectableItemWrapper}>
             <CheckBox
               title={item.title}
               subTitle={item.subTitle}
@@ -42,7 +43,7 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
 
       case 'radio':
         return (
-          <View style={styles.itemWrapper}>
+          <View style={styles.selectableItemWrapper}>
             <RadioButton
               title={item.title}
               subTitle={item.subTitle}

@@ -28,6 +28,13 @@ export const useStyles = () => {
       paddingVertical: Tokens.spacer({ key: 'xs' }),
       height: 56,
     },
+
+    selectableItemWrapper: {
+      justifyContent: 'center',
+      paddingHorizontal: Tokens.spacer({ key: 'md' }),
+      paddingVertical: Tokens.spacer({ key: 'xs' }),
+      height: 56,
+    },
     
     itemSeparator: {
       height: 1,
