@@ -30,9 +30,5 @@ export const useStyles = (props: IRadioButtonProps) => {
       borderRadius: Tokens.radii({ key: 'full' }),
       backgroundColor: colors.background,
     },
-
-    textsWrapper: {
-      flex: 1,
-    },
   });
 };

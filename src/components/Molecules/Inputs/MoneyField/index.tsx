@@ -58,6 +58,7 @@ export const MoneyField: React.FC<IMoneyFieldProps> = (props) => {
 
       <Animated.View style={[styles.inputWrapper, reanimatedStyles.inputWrapper]}>
         <MaskInput
+          testID="money-field-input"
           style={styles.textInput}
           value={value}
           mask={mask}

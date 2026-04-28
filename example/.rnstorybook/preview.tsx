@@ -1,20 +1,15 @@
 import type { Preview } from '@storybook/react-native';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
-import { StyleSheet, View } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+import React from 'react';
+import { RubberDuckUIProvider } from 'rubber-duck-ui';
 
 const preview: Preview = {
   decorators: [
     withBackgrounds,
     (Story) => (
-      <View style={styles.container}>
+      <RubberDuckUIProvider>
         <Story />
-      </View>
+      </RubberDuckUIProvider>
     ),
   ],
   parameters: {

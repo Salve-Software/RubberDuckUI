@@ -57,6 +57,7 @@ export const NumberField: React.FC<INumberFieldProps> = (props) => {
 
       <Animated.View style={[styles.inputWrapper, reanimatedStyles.inputWrapper]}>
         <TextInput
+          testID="number-field-input"
           style={styles.textInput}
           value={value}
           onChangeText={onChangeText}

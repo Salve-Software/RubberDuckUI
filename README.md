@@ -11,10 +11,13 @@ Peer dependencies that must be installed in the consuming app:
 ```
 react >= 19
 react-native >= 0.83
+@gorhom/bottom-sheet >= 5.0.0
 lottie-react-native
 react-content-loader
+react-native-gesture-handler
 react-native-mask-input >= 1.2.0
 react-native-reanimated >= 4.0.0
+react-native-safe-area-context
 react-native-svg
 ```
 
@@ -54,26 +57,29 @@ npx react-native-asset
 
 ---
 
-## Configuration
+## Setup
 
-Initialize the design system once at the root of your app (e.g. `App.tsx`):
-
-```tsx
-import { RubberDuckUI } from 'rubber-duck-ui'
-
-RubberDuckUI.configure({
-  darkMode: true,
-  colors: {
-    accent: '#FFD600',
-  },
-})
-```
-
-To reset to defaults:
+Wrap your app once with `RubberDuckUIProvider`. It initializes the theme, wires up gesture handling, and mounts all global organisms (e.g. `BottomModal`):
 
 ```tsx
-RubberDuckUI.reset()
+import { RubberDuckUIProvider } from 'rubber-duck-ui'
+
+export default function App() {
+  return (
+    <RubberDuckUIProvider darkMode={false}>
+      <Navigation />
+    </RubberDuckUIProvider>
+  )
+}
 ```
+
+| Prop | Type | Default |
+|---|---|---|
+| `darkMode` | `boolean` | `false` |
+| `colors` | `Partial<IColors>` | DS defaults |
+| `style` | `StyleProp<ViewStyle>` | `{ flex: 1 }` |
+
+> **Advanced:** `RubberDuckUI.configure()` and `RubberDuckUI.reset()` are still available for runtime theme changes outside the provider.
 
 ---
 
@@ -98,6 +104,12 @@ RubberDuckUI.reset()
 | `MultilineText` | Multi-line textarea with animated focus state |
 | `NumberField` | Numeric input with optional right-side unit label |
 | `MoneyField` | Currency input with configurable symbol, separators and precision |
+
+**Organisms** — componentes completos com lógica e composição própria:
+
+| Component | Description |
+|---|---|
+| `BottomModal` | Imperative bottom sheet with list of selectable items, backed by `@gorhom/bottom-sheet` |
 
 Full props reference → [docs/components.md](./docs/components.md)
 
