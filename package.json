@@ -10,8 +10,7 @@
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "test": "jest",
-    "setup:aiworkers": "bash node_modules/@salve-software/ai-workers/scripts/setup.sh"
+    "test": "jest"
   },
   "exports": {
     ".": {
@@ -28,7 +27,6 @@
   "author": "eumaninho54 <angelo.omarzinho@outlook.com> (https://github.com/eumaninho54)",
   "license": "MIT",
   "dependencies": {
-    "@salve-software/ai-workers": "github:Salve-Software/AIWorkers#feat/rn-component-scaffold",
     "lucide-react-native": "^0.577.0",
     "zustand": "^5.0.11"
   },
