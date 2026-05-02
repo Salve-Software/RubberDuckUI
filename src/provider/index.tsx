@@ -1,5 +1,5 @@
 import type { IRubberDuckUIProviderProps } from './types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useStyles } from './styles';
@@ -12,12 +12,17 @@ export const RubberDuckUIProvider: React.FC<IRubberDuckUIProviderProps> = (props
     darkMode,
     colors,
     style,
+    onReady,
   } = props;
-  
+
   const styles = useStyles(props);
+
+  const onReadyRef = useRef(onReady);
+  onReadyRef.current = onReady;
 
   useEffect(() => {
     RubberDuckUI.configure({ darkMode, colors });
+    onReadyRef.current?.();
   }, [darkMode, colors]);
 
   return (

@@ -1,3 +1,4 @@
+import type { TextStyle } from 'react-native';
 import type { IColorProps } from './colors';
 import type { IRadiiProps, ISpacerProps } from './spacer';
 import type { FamilyKey, IFamilyProps, ISizeProps, IWeightProps } from './typography';
@@ -22,7 +23,7 @@ export class Tokens {
     return Typography.size(props);
   };
 
-  static fontWeight = (props: IWeightProps) => {
+  static fontWeight = (props: IWeightProps): TextStyle['fontWeight'] => {
     return Typography.weight(props);
   };
 
