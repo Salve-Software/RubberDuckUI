@@ -1,3 +1,4 @@
+import type { TextStyle } from 'react-native';
 import type { FamilyKey, IFamilyProps, ISizeProps, IWeightProps } from './types';
 import { FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS } from './constants';
 
@@ -7,7 +8,7 @@ export class Typography {
     return FONT_SIZES[key];
   };
 
-  static weight = (props: IWeightProps) => {
+  static weight = (props: IWeightProps): TextStyle['fontWeight'] => {
     const { key } = props;
     return FONT_WEIGHTS[key];
   };

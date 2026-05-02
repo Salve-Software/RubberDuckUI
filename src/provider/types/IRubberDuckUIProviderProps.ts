@@ -6,4 +6,5 @@ import type { ViewStyle } from "react-native";
 export interface IRubberDuckUIProviderProps extends IConfigureStore {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
+  onReady?: () => void;
 }
