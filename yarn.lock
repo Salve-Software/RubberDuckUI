@@ -3444,13 +3444,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@salve-software/ai-workers@github:Salve-Software/AIWorkers#feat/rn-component-scaffold":
-  version: 0.1.2
-  resolution: "@salve-software/ai-workers@https://github.com/Salve-Software/AIWorkers.git#commit=44480c05c38dc8d1c2641a3c25264f9ed9e5cced"
-  checksum: 10c0/ed78d9eda51b6746386c5e924c5faa834be1a3aacc4745a68667d56974e781181fa5322df40f4fa8603c915061a4302438cb6018ca491c3c2b7bea3b153f034a
-  languageName: node
-  linkType: hard
-
 "@sinclair/typebox@npm:^0.27.8":
   version: 0.27.10
   resolution: "@sinclair/typebox@npm:0.27.10"
@@ -11800,7 +11793,6 @@ __metadata:
     "@gorhom/bottom-sheet": "npm:^5.1.0"
     "@react-native/babel-preset": "npm:0.83.0"
     "@react-native/eslint-config": "npm:0.83.0"
-    "@salve-software/ai-workers": "github:Salve-Software/AIWorkers#feat/rn-component-scaffold"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@testing-library/react-native": "npm:^13.3.3"
     "@types/jest": "npm:^29.5.14"
