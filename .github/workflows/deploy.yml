@@ -77,13 +77,17 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "TAG=v$VERSION"    >> "$GITHUB_ENV"
 
-      - name: Checkout PR branch
+      - name: Merge PR into main
+        run: |
+          gh pr merge ${{ env.PR_NUMBER }} \
+            --merge \
+            --repo ${{ github.repository }}
+
+      - name: Checkout main
         uses: actions/checkout@v5
         with:
-          ref: ${{ env.PR_BRANCH }}
+          ref: main
           fetch-depth: 0
-          # NOTE: If branch protection requires signed commits, replace with:
-          #   token: ${{ secrets.RELEASE_PAT }}
 
       - name: Configure git identity
         run: |
@@ -94,25 +98,13 @@ jobs:
         run: |
           jq --arg v "${{ env.VERSION }}" '.version = $v' package.json > package.json.tmp
           mv package.json.tmp package.json
-
-      - name: Commit version bump
-        run: |
           git add package.json
           if git diff --cached --quiet; then
             echo "Version already at ${{ env.VERSION }}, skipping commit."
           else
             git commit -m "chore(release): bump version to ${{ env.VERSION }}"
+            git push
           fi
-
-      - name: Push to PR branch
-        run: |
-          git push origin HEAD:${{ env.PR_BRANCH }}
-
-      - name: Merge PR
-        run: |
-          gh pr merge ${{ env.PR_NUMBER }} \
-            --merge \
-            --repo ${{ github.repository }}
 
       - name: Tag merge commit on main
         run: |
