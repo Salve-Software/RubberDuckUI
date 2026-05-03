@@ -1,6 +1,8 @@
 import type { IStoreState } from './types';
 import { create } from 'zustand';
 import { defaultState } from './defaultState';
+import { dark } from '../tokens/colors/dark';
+import { light } from '../tokens/colors/light';
 
 export const useRubberDuckStore = create<IStoreState>((set) => ({
   ...defaultState,
@@ -8,9 +10,10 @@ export const useRubberDuckStore = create<IStoreState>((set) => ({
   // private
   _configure: (config) => {
     set((state) => {
+      const isDarkMode = config.darkMode ?? state.isDarkMode;
       return {
-        isDarkMode: config.darkMode ?? state.isDarkMode,
-        colors: config.colors ?? state.colors,
+        isDarkMode,
+        colors: config.colors ?? (isDarkMode ? dark : light),
       };
     });
   },
