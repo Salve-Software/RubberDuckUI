@@ -2,7 +2,7 @@ import type { ISwitchProps } from './types';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { useStyles } from './styles';
+import { useStyles, TRACK_PADDING } from './styles';
 import { useRubberDuckStore } from '../../../store';
 import { useSwitchViewModel, useReanimatedStyles } from './hooks';
 
@@ -23,6 +23,8 @@ export const Switch: React.FC<ISwitchProps> = (props) => {
       activeOpacity={1}
       onPress={onToggle}
       disabled={!!disabled}
+      hitSlop={TRACK_PADDING}
+      style={{ padding: TRACK_PADDING }}
       accessibilityRole="switch"
       accessibilityState={{ checked: !!isOn, disabled: !!disabled }}>
       <Animated.View style={[styles.track, reanimatedStyles.track]}>
