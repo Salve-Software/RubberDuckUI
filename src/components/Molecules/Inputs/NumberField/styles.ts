@@ -25,7 +25,7 @@ export const useStyles = (props: INumberFieldProps) => {
       alignItems: 'center',
       borderWidth: 2,
       borderColor: colors.borderDefault,
-      borderRadius: Tokens.radii({ key: 'xs' }),
+      borderRadius: Tokens.radii({ key: 'lg' }),
       backgroundColor: colors.background,
     },
 

@@ -14,7 +14,7 @@ export const useStyles = (
     button: {
       height: sizes.height,
       paddingHorizontal: sizes.paddingHorizontal,
-      borderRadius: Tokens.radii({ key: 'md' }),
+      borderRadius: Tokens.radii({ key: 'lg' }),
       backgroundColor: variantColors.background,
       borderWidth: variant === 'outline' ? 1 : 0,
       borderColor: variantColors.border,

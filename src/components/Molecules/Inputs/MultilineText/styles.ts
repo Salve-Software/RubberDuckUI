@@ -23,7 +23,7 @@ export const useStyles = (props: IMultilineTextProps) => {
     inputWrapper: {
       borderWidth: 2,
       borderColor: colors.borderDefault,
-      borderRadius: Tokens.radii({ key: 'xs' }),
+      borderRadius: Tokens.radii({ key: 'lg' }),
       backgroundColor: colors.background,
       minHeight: 24 * numberOfLines,
     },
