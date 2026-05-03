@@ -6,7 +6,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { TRACK_WIDTH, THUMB_SIZE, TRACK_PADDING } from '../../styles';
+import { SWITCH_TRACK_WIDTH, SWITCH_THUMB_SIZE, SWITCH_PADDING } from '../../constants';
 
 export const useReanimatedStyles = (props: IMountReanimatedStylesProps) => {
   const { isOn, accentColor, borderDefaultColor } = props;
@@ -22,7 +22,7 @@ export const useReanimatedStyles = (props: IMountReanimatedStylesProps) => {
   }), [borderDefaultColor, accentColor]);
 
   const thumb = useAnimatedStyle(() => ({
-    transform: [{ translateX: progress.value * (TRACK_WIDTH - THUMB_SIZE - 2 * TRACK_PADDING) }],
+    transform: [{ translateX: progress.value * (SWITCH_TRACK_WIDTH - SWITCH_THUMB_SIZE - 2 * SWITCH_PADDING) }],
   }), []);
 
   return {
