@@ -4,4 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     gap: 16,
   },
+  fullWidth: {
+    alignSelf: 'stretch',
+  },
 });

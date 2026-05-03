@@ -88,6 +88,14 @@ export const WithIcons: Story = {
   ),
 };
 
+export const FullWidth: Story = {
+  render: (args) => (
+    <View style={styles.fullWidth}>
+      <Button {...args} />
+    </View>
+  ),
+};
+
 const InteractiveButton = (args: React.ComponentProps<typeof Button>) => {
   const [loading, setLoading] = useState(false);
 
