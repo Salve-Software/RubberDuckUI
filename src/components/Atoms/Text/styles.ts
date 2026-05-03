@@ -15,7 +15,7 @@ export const useStyles = (props: ITextProps) => {
 
   const fontFamily = Tokens.fontFamily({ key: 'sans' })[weight];
   const fontSize = Tokens.fontSize({ key: size });
-  const boldFontFamily = Tokens.fontFamily({ key: 'sans' }).bold;
+  const boldFontFamily = Tokens.fontFamily({ key: 'sans' }).semibold;
 
   return StyleSheet.create({
     text: {
@@ -24,6 +24,7 @@ export const useStyles = (props: ITextProps) => {
       textAlign: align,
       color: colors[color],
     },
+    
     boldText: {
       fontFamily: boldFontFamily,
     },

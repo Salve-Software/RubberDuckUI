@@ -20,6 +20,5 @@ export const useTextViewModel = (props: PropsWithChildren<ITextProps>) => {
 
   return {
     content,
-    textStyle: styles.text,
   };
 };
