@@ -13,7 +13,6 @@ const meta = {
     size: 'md',
     disabled: false,
     isLoading: false,
-    fullWidth: false,
     onPress: () => {},
   },
   argTypes: {
@@ -28,7 +27,6 @@ const meta = {
     },
     disabled: { control: 'boolean' },
     isLoading: { control: 'boolean' },
-    fullWidth: { control: 'boolean' },
     leftIcon: {
       control: 'select',
       options: [undefined, 'ArrowLeft', 'Plus', 'Check', 'Trash2'],
@@ -88,12 +86,6 @@ export const WithIcons: Story = {
       <Button {...args} leftIcon="Plus" rightIcon="ArrowRight" label="Add item" />
     </View>
   ),
-};
-
-export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-  },
 };
 
 const InteractiveButton = (args: React.ComponentProps<typeof Button>) => {

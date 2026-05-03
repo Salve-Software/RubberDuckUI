@@ -8,7 +8,7 @@ export const useStyles = (
   sizes: ButtonSizeConfig,
   variantColors: ButtonVariantColors,
 ) => {
-  const { variant = 'primary', disabled, fullWidth } = props;
+  const { variant = 'primary', disabled } = props;
 
   return StyleSheet.create({
     button: {
@@ -22,7 +22,6 @@ export const useStyles = (
       alignItems: 'center',
       justifyContent: 'center',
       opacity: disabled ? 0.5 : 1,
-      alignSelf: fullWidth ? 'stretch' : 'flex-start',
     },
     
     content: {

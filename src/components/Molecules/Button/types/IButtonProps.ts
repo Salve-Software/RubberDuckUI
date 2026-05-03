@@ -11,6 +11,5 @@ export interface IButtonProps {
   isLoading?: boolean;
   leftIcon?: IconName;
   rightIcon?: IconName;
-  fullWidth?: boolean;
   testID?: string;
 }
