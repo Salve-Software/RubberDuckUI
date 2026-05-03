@@ -88,9 +88,9 @@ export const WithIcons: Story = {
   ),
 };
 
-export const FullWidth: Story = {
+export const Inline: Story = {
   render: (args) => (
-    <View style={styles.fullWidth}>
+    <View style={styles.inline}>
       <Button {...args} />
     </View>
   ),
