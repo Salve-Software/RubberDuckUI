@@ -3,16 +3,7 @@ import type { PropsWithChildren } from 'react';
 import React from 'react';
 import { Text as TextRN } from 'react-native';
 import { useStyles } from './styles';
-
-function parseInlineBold(text: string) {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((segment, index) => {
-    const match = segment.match(/^\*\*(.+)\*\*$/);
-    if (match) {
-      return { text: match[1], bold: true, key: index };
-    }
-    return { text: segment, bold: false, key: index };
-  });
-}
+import { parseInlineBold } from './library';
 
 export const Text: React.FC<PropsWithChildren<ITextProps>> = (props) => {
   const { children, numberOfLines } = props;
