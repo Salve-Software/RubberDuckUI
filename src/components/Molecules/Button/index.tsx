@@ -17,8 +17,8 @@ export const Button: React.FC<IButtonProps> = (props) => {
     testID,
   } = props;
 
-  const { styles, sizes, variantColors } = useStyles(props);
-  const { handlePress } = useButtonViewModel(props);
+  const { handlePress, sizes, variantColors } = useButtonViewModel(props);
+  const styles = useStyles(props, sizes, variantColors);
 
   return (
     <TouchableOpacity
