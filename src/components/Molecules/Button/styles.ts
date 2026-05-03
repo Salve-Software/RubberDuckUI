@@ -22,6 +22,7 @@ export const useStyles = (
       alignItems: 'center',
       justifyContent: 'center',
       opacity: disabled ? 0.5 : 1,
+      alignSelf: 'flex-start',
     },
     
     content: {
