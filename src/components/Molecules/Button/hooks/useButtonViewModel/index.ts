@@ -15,10 +15,14 @@ export const useButtonViewModel = (props: IButtonProps) => {
   const sizes = buildSize(size);
   const variantColors = buildVariantColors(variant, colors);
 
-  function handlePress() {
+  function onPressButton() {
     if (disabled || isLoading) return;
     onPress();
   }
 
-  return { handlePress, sizes, variantColors };
+  return { 
+    onPressButton, 
+    sizes, 
+    variantColors,
+  };
 };

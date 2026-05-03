@@ -22,6 +22,7 @@ export const buildSize = (size: ButtonSize): ButtonSizeConfig => {
         iconSize: 'small_16',
         loadingSize: 'tiny_48',
       };
+
     case 'md':
       return {
         height: 44,
@@ -30,7 +31,9 @@ export const buildSize = (size: ButtonSize): ButtonSizeConfig => {
         iconSize: 'tiny_20',
         loadingSize: 'small_64',
       };
+
     case 'lg':
+    default:
       return {
         height: 52,
         paddingHorizontal: Tokens.spacer({ key: 'lg' }),

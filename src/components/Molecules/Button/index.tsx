@@ -17,30 +17,48 @@ export const Button: React.FC<IButtonProps> = (props) => {
     testID,
   } = props;
 
-  const { handlePress, sizes, variantColors } = useButtonViewModel(props);
+  const { onPressButton, sizes, variantColors } = useButtonViewModel(props);
   const styles = useStyles(props, sizes, variantColors);
 
   return (
     <TouchableOpacity
       testID={testID}
-      activeOpacity={0.7}
+      activeOpacity={disabled ? 1 : 0.7}
       disabled={disabled || isLoading}
-      onPress={handlePress}
+      onPress={onPressButton}
       style={styles.button}>
       {isLoading
         ?
-        <Loading size={sizes.loadingSize} color={variantColors.iconColor} />
+        <Loading 
+          size={sizes.loadingSize} 
+          color={variantColors.iconColor} 
+        />
         :
         <View style={styles.content}>
           {leftIcon
             ?
-            <Icon icon={leftIcon} size={sizes.iconSize} color={variantColors.iconColor} />
+            <Icon
+              icon={leftIcon}
+              size={sizes.iconSize}
+              color={variantColors.iconColor}
+            />
             : null
           }
-          <Text size={sizes.fontSize} weight="semibold" color={variantColors.text}>{label}</Text>
+
+          <Text
+            size={sizes.fontSize}
+            weight="semibold"
+            color={variantColors.text}>
+            {label}
+          </Text>
+
           {rightIcon
             ?
-            <Icon icon={rightIcon} size={sizes.iconSize} color={variantColors.iconColor} />
+            <Icon
+              icon={rightIcon}
+              size={sizes.iconSize}
+              color={variantColors.iconColor}
+            />
             : null
           }
         </View>

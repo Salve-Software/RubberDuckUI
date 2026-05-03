@@ -24,6 +24,7 @@ export const useStyles = (
       opacity: disabled ? 0.5 : 1,
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
     },
+    
     content: {
       flexDirection: 'row',
       alignItems: 'center',
