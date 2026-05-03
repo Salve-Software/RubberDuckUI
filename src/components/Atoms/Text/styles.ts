@@ -16,12 +16,17 @@ export const useStyles = (props: ITextProps) => {
   const fontFamily = Tokens.fontFamily({ key: 'sans' })[weight];
   const fontSize = Tokens.fontSize({ key: size });
 
+  const boldFontFamily = Tokens.fontFamily({ key: 'sans' })['bold'];
+
   return StyleSheet.create({
     text: {
       fontFamily,
       fontSize,
       textAlign: align,
       color: colors[color],
+    },
+    boldText: {
+      fontFamily: boldFontFamily,
     },
   });
 };
