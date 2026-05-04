@@ -20,10 +20,10 @@ export const useReanimatedStyles = (isVisible: boolean, onDismiss: () => void) =
 
   useEffect(() => {
     if (isVisible) {
+      dragY.value = 0;
       progress.value = withSpring(1, { damping: 18, stiffness: 180 });
     } else {
       progress.value = withTiming(0, { duration: 200 });
-      dragY.value = withTiming(0, { duration: 200 });
     }
   }, [isVisible, progress, dragY]);
 
@@ -37,7 +37,6 @@ export const useReanimatedStyles = (isVisible: boolean, onDismiss: () => void) =
     })
     .onEnd((e) => {
       if (e.translationY > TOAST_DRAG_DISMISS_THRESHOLD) {
-        dragY.value = withTiming(TOAST_SLIDE_OFFSET, { duration: 200 });
         runOnJS(onDismiss)();
       } else {
         dragY.value = withSpring(0);
