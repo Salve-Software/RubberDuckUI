@@ -23,7 +23,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
   return (
     <TouchableOpacity
       testID={testID}
-      activeOpacity={disabled ? 1 : 0.7}
+      activeOpacity={disabled ? 1 : 0.8}
       disabled={disabled || isLoading}
       onPress={onPressButton}
       style={styles.button}>
