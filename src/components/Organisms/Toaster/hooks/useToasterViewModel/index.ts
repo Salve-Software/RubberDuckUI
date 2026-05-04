@@ -1,6 +1,6 @@
 import type { IToasterApi } from '../../controllers/ToasterApi/types';
 import type { IToasterRefProps } from '../../types';
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ToasterApi } from '../../controllers';
 import { DEFAULT_TOAST_DURATION_MS } from '../../constants';
 
@@ -11,38 +11,35 @@ export const useToasterViewModel = () => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const imperativeRef = useRef<IToasterApi | null>(null);
 
-  const clearTimer = useCallback(() => {
+  const clearTimer = () => {
     if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  }, []);
+  };
 
-  const show = useCallback((props: IToasterRefProps) => {
+  const show = (props: IToasterRefProps) => {
     clearTimer();
     setToasterPropsState(props);
     setIsVisible(true);
     timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? DEFAULT_TOAST_DURATION_MS);
-  }, [clearTimer]);
+  };
 
-  const hide = useCallback(() => {
+  const hide = () => {
     clearTimer();
     setIsVisible(false);
-  }, [clearTimer]);
+  };
+
+  imperativeRef.current = { show, hide };
 
   useEffect(() => {
-    imperativeRef.current = { show, hide };
     ToasterApi.setRef(imperativeRef);
     return () => {
+      clearTimer();
       ToasterApi.setRef({ current: null });
     };
-  }, [show, hide]);
-
-  useEffect(() => {
-    return () => {
-      clearTimer();
-    };
-  }, [clearTimer]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     toasterProps,
