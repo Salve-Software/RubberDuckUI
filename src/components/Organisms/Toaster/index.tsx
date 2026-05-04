@@ -12,13 +12,13 @@ import { Icon } from '../../Atoms/Icon';
 export const Toaster: React.FC<IToasterProps> = ({ ref }) => {
   const { toasterProps, isVisible, hide } = useToasterViewModel(ref ?? null);
   const styles = useStyles(toasterProps?.type);
-  const { wrapper, gesture } = useReanimatedStyles(isVisible, hide);
+  const reanimatedStyles = useReanimatedStyles(isVisible, hide);
 
   return (
-    <GestureDetector gesture={gesture}>
+    <GestureDetector gesture={reanimatedStyles.gesture}>
       <Animated.View
         pointerEvents={isVisible ? 'box-none' : 'none'}
-        style={[styles.wrapper, wrapper]}>
+        style={[styles.wrapper, reanimatedStyles.wrapper]}>
         {toasterProps
           ?
           <>

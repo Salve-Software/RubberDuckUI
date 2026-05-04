@@ -27,6 +27,7 @@ export const useStyles = (type: ToasterType | undefined) => {
       alignItems: 'center',
       gap: Tokens.spacer({ key: 'sm' }),
       backgroundColor,
+      zIndex: 999,
     },
 
     textWrapper: {
