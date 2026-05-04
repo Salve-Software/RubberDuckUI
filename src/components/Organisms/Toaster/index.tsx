@@ -39,7 +39,12 @@ export const Toaster: React.FC<IToasterProps> = () => {
                 : null
               }
             </View>
-            <TouchableOpacity onPress={hide} style={styles.closeButton}>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={hide}
+              style={styles.closeButton}
+              hitSlop={8}>
               <Icon icon="X" size="small_16" color="white" />
             </TouchableOpacity>
           </>
