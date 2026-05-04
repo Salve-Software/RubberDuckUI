@@ -17,24 +17,24 @@ describe('useToasterViewModel', () => {
 
   describe('Initial state', () => {
     it('toasterProps starts as undefined', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
       expect(result.current.toasterProps).toBeUndefined();
     });
 
     it('isVisible starts as false', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
       expect(result.current.isVisible).toBe(false);
     });
 
     it('Registers with ToasterApi on mount', () => {
-      renderHook(() => useToasterViewModel());
+      renderHook(() => useToasterViewModel(null));
       expect(ToasterApi.setRef).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('show', () => {
     it('Sets toasterProps and isVisible to true', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
 
       act(() => {
         ToasterApi.show({ type: 'success', title: 'Hello' });
@@ -45,7 +45,7 @@ describe('useToasterViewModel', () => {
     });
 
     it('Auto-dismisses after default 3000ms', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
 
       act(() => {
         ToasterApi.show({ type: 'info', title: 'Auto-dismiss' });
@@ -61,7 +61,7 @@ describe('useToasterViewModel', () => {
     });
 
     it('Honors custom duration', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
 
       act(() => {
         ToasterApi.show({ type: 'warning', title: 'Custom', duration: 1000 });
@@ -81,7 +81,7 @@ describe('useToasterViewModel', () => {
     });
 
     it('Calling show twice resets the timer', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
 
       act(() => {
         ToasterApi.show({ type: 'success', title: 'First' });
@@ -111,7 +111,7 @@ describe('useToasterViewModel', () => {
 
   describe('hide', () => {
     it('Sets isVisible to false and clears timer', () => {
-      const { result } = renderHook(() => useToasterViewModel());
+      const { result } = renderHook(() => useToasterViewModel(null));
 
       act(() => {
         ToasterApi.show({ type: 'success', title: 'Hello' });

@@ -9,8 +9,8 @@ import { TYPE_ICON_MAP } from './constants';
 import { Text } from '../../Atoms/Text';
 import { Icon } from '../../Atoms/Icon';
 
-export const Toaster: React.FC<IToasterProps> = () => {
-  const { toasterProps, isVisible, hide } = useToasterViewModel();
+export const Toaster: React.FC<IToasterProps> = ({ ref }) => {
+  const { toasterProps, isVisible, hide } = useToasterViewModel(ref ?? null);
   const styles = useStyles(toasterProps?.type);
   const { wrapper, gesture } = useReanimatedStyles(isVisible, hide);
 
