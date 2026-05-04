@@ -11,35 +11,38 @@ export const useToasterViewModel = () => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const imperativeRef = useRef<IToasterApi | null>(null);
 
-  const clearTimer = () => {
+  const clearTimer = useCallback(() => {
     if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  };
+  }, []);
 
   const show = useCallback((props: IToasterRefProps) => {
     clearTimer();
     setToasterPropsState(props);
     setIsVisible(true);
     timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? DEFAULT_TOAST_DURATION_MS);
-  }, []);
+  }, [clearTimer]);
 
   const hide = useCallback(() => {
     clearTimer();
     setIsVisible(false);
-  }, []);
+  }, [clearTimer]);
 
   useEffect(() => {
     imperativeRef.current = { show, hide };
     ToasterApi.setRef(imperativeRef);
+    return () => {
+      ToasterApi.setRef({ current: null });
+    };
   }, [show, hide]);
 
   useEffect(() => {
     return () => {
       clearTimer();
     };
-  }, []);
+  }, [clearTimer]);
 
   return {
     toasterProps,

@@ -12,7 +12,8 @@ export const useReanimatedStyles = ({ isVisible }: { isVisible: boolean }) => {
 
   useEffect(() => {
     progress.value = withTiming(isVisible ? 1 : 0, { duration: 250 });
-  }, [isVisible, progress]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
 
   const container = useAnimatedStyle(() => ({
     opacity: progress.value,

@@ -14,7 +14,7 @@ describe('Toaster', () => {
 
   it('Renders without crashing', () => {
     const { toJSON } = render(<Toaster />);
-    expect(toJSON()).toBeNull();
+    expect(toJSON()).toBeTruthy();
   });
 
   it('Shows title after ToasterApi.show is called', () => {
@@ -51,6 +51,7 @@ describe('Toaster', () => {
 
     act(() => {
       ToasterApi.show({ type: 'error', title: 'Second' });
+      jest.advanceTimersByTime(100);
     });
 
     expect(screen.queryByText('First')).toBeNull();

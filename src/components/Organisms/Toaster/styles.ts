@@ -32,9 +32,5 @@ export const useStyles = ({ type }: { type?: ToasterType }) => {
     textWrapper: {
       flex: 1,
     },
-
-    title: {},
-
-    description: {},
   });
 };

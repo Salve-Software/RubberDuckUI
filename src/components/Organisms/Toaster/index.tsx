@@ -1,6 +1,5 @@
-import type { IToasterProps } from './types';
+import type { IToasterProps, ToasterType } from './types';
 import type { IconName } from '../../Atoms/Icon/types/IconName';
-import type { ToasterType } from './types';
 import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -21,31 +20,33 @@ export const Toaster: React.FC<IToasterProps> = () => {
   const styles = useStyles({ type: toasterProps?.type });
   const reanimatedStyles = useReanimatedStyles({ isVisible });
 
-  if (!toasterProps) {
-    return null;
-  }
-
   return (
     <Animated.View
-      pointerEvents="none"
+      pointerEvents={isVisible ? 'box-none' : 'none'}
       style={[styles.container, reanimatedStyles.container]}>
-      <Icon
-        icon={TYPE_ICON_MAP[toasterProps.type]}
-        size="small_16"
-        color="white"
-      />
-      <View style={styles.textWrapper}>
-        <Text weight="semibold" color="textInverse">
-          {toasterProps.title}
-        </Text>
-        {toasterProps.description
-          ?
-          <Text color="textInverse">
-            {toasterProps.description}
-          </Text>
-          : null
-        }
-      </View>
+      {toasterProps
+        ?
+        <>
+          <Icon
+            icon={TYPE_ICON_MAP[toasterProps.type]}
+            size="small_16"
+            color="white"
+          />
+          <View style={styles.textWrapper}>
+            <Text weight="semibold" color="textInverse">
+              {toasterProps.title}
+            </Text>
+            {toasterProps.description
+              ?
+              <Text color="textInverse">
+                {toasterProps.description}
+              </Text>
+              : null
+            }
+          </View>
+        </>
+        : null
+      }
     </Animated.View>
   );
 };
