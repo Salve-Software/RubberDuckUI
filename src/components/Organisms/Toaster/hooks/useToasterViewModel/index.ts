@@ -43,5 +43,6 @@ export const useToasterViewModel = () => {
   return {
     toasterProps,
     isVisible,
+    hide,
   };
 };

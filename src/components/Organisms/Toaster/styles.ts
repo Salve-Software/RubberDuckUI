@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { useRubberDuckStore } from '../../../store';
 import { Tokens } from '../../../tokens/Tokens.class';
 
-export const useStyles = ({ type }: { type?: ToasterType }) => {
+export const useStyles = (type: ToasterType | undefined) => {
   const colors = useRubberDuckStore((s) => s.colors);
 
   const backgroundColorMap: Record<ToasterType, string> = {
@@ -16,7 +16,7 @@ export const useStyles = ({ type }: { type?: ToasterType }) => {
   const backgroundColor = type ? backgroundColorMap[type] : colors.info;
 
   return StyleSheet.create({
-    container: {
+    wrapper: {
       position: 'absolute',
       bottom: Tokens.spacer({ key: 'lg' }),
       left: Tokens.spacer({ key: 'md' }),
@@ -31,6 +31,10 @@ export const useStyles = ({ type }: { type?: ToasterType }) => {
 
     textWrapper: {
       flex: 1,
+    },
+
+    closeButton: {
+      padding: Tokens.spacer({ key: 'xxs' }),
     },
   });
 };
