@@ -21,4 +21,9 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 14,
   },
+  modalContent: {
+    gap: 12,
+    padding: 24,
+    paddingBottom: 40,
+  },
 });

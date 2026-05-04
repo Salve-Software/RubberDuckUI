@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import React, { useState } from 'react';
+import type { IToasterApi } from 'rubber-duck-ui';
+import React, { useRef, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { ToasterApi } from 'rubber-duck-ui';
+import { BottomModalApi, Toaster, ToasterApi } from 'rubber-duck-ui';
 import { styles } from './Toaster.styles';
 
 const Trigger = ({ label, onPress }: { label: string; onPress: () => void }) => (
@@ -79,6 +80,41 @@ const InteractiveDemo = () => {
   );
 };
 
+const ModalContent = () => {
+  const toasterRef = useRef<IToasterApi>(null);
+
+  return (
+    <View style={styles.modalContent}>
+      <Toaster ref={toasterRef} />
+      <Trigger
+        label="Show Success"
+        onPress={() => toasterRef.current?.show({ type: 'success', title: 'Saved!', description: 'Action completed inside modal.' })}
+      />
+      <Trigger
+        label="Show Error"
+        onPress={() => toasterRef.current?.show({ type: 'error', title: 'Failed!', description: 'Something went wrong.' })}
+      />
+      <Trigger
+        label="Show Warning"
+        onPress={() => toasterRef.current?.show({ type: 'warning', title: 'Warning!', description: 'Please review your input.' })}
+      />
+      <Trigger
+        label="Show Info"
+        onPress={() => toasterRef.current?.show({ type: 'info', title: 'Info', description: 'Local toaster, not global.' })}
+      />
+    </View>
+  );
+};
+
+const InsideModalDemo = () => (
+  <View style={styles.container}>
+    <Trigger
+      label="Open modal with local Toaster"
+      onPress={() => BottomModalApi.open({ content: <ModalContent /> })}
+    />
+  </View>
+);
+
 const meta = {
   title: 'Organisms/Toaster',
   component: View,
@@ -94,4 +130,8 @@ export const Default: Story = {
 
 export const Interactive: Story = {
   render: () => <InteractiveDemo />,
+};
+
+export const InsideModal: Story = {
+  render: () => <InsideModalDemo />,
 };
