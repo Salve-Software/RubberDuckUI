@@ -36,7 +36,7 @@ export const RadioButton: React.FC<IRadioButtonProps> = (props) => {
     <TouchableOpacity
       onPress={onPress}
       style={styles.wrapper}
-      activeOpacity={0.7}>
+      activeOpacity={0.8}>
       <View style={styles.leftCheckWrapper}>
         <Animated.View style={[styles.leftCheck, leftCheckStyle]} />
       </View>
