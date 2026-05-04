@@ -5,6 +5,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { TOAST_SLIDE_OFFSET } from '../../constants';
 
 export const useReanimatedStyles = ({ isVisible }: { isVisible: boolean }) => {
   const progress = useSharedValue(0);
@@ -17,7 +18,7 @@ export const useReanimatedStyles = ({ isVisible }: { isVisible: boolean }) => {
     opacity: progress.value,
     transform: [
       {
-        translateY: interpolate(progress.value, [0, 1], [40, 0]),
+        translateY: interpolate(progress.value, [0, 1], [TOAST_SLIDE_OFFSET, 0]),
       },
     ],
   }), []);

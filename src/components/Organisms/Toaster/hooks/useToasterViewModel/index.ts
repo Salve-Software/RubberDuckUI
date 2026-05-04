@@ -2,6 +2,7 @@ import type { IToasterApi } from '../../controllers/ToasterApi/types';
 import type { IToasterRefProps } from '../../types';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { ToasterApi } from '../../controllers';
+import { DEFAULT_TOAST_DURATION_MS } from '../../constants';
 
 export const useToasterViewModel = () => {
   const [toasterProps, setToasterPropsState] = useState<IToasterRefProps | undefined>();
@@ -21,7 +22,7 @@ export const useToasterViewModel = () => {
     clearTimer();
     setToasterPropsState(props);
     setIsVisible(true);
-    timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? 3000);
+    timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? DEFAULT_TOAST_DURATION_MS);
   }, []);
 
   const hide = useCallback(() => {
