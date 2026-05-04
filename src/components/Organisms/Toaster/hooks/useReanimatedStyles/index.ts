@@ -19,9 +19,11 @@ export const useReanimatedStyles = (isVisible: boolean, onDismiss: () => void) =
   const dragY = useSharedValue(0);
 
   useEffect(() => {
-    progress.value = withTiming(isVisible ? 1 : 0, { duration: 250 });
-    if (!isVisible) {
-      dragY.value = withTiming(0, { duration: 250 });
+    if (isVisible) {
+      progress.value = withSpring(1, { damping: 18, stiffness: 180 });
+    } else {
+      progress.value = withTiming(0, { duration: 200 });
+      dragY.value = withTiming(0, { duration: 200 });
     }
   }, [isVisible, progress, dragY]);
 
