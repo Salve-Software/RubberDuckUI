@@ -5,6 +5,8 @@ const useSharedValue = (init: unknown) => ({ value: init });
 const useAnimatedStyle = (fn: () => object) => fn();
 const withTiming = (value: unknown) => value;
 const withSpring = (value: unknown) => value;
+const interpolate = (_value: unknown, _input: unknown, output: number[]) =>
+  output[0];
 const interpolateColor = (_value: unknown, _range: unknown, colors: string[]) =>
   colors[0];
 const runOnJS = (fn: (...args: unknown[]) => unknown) => fn;
@@ -42,6 +44,7 @@ module.exports = {
   useAnimatedGestureHandler,
   withTiming,
   withSpring,
+  interpolate,
   interpolateColor,
   runOnJS,
   runOnUI,
