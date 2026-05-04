@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 import {
-  interpolate,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
@@ -15,17 +14,20 @@ import {
 } from '../../constants';
 
 export const useReanimatedStyles = (isVisible: boolean, onDismiss: () => void) => {
-  const progress = useSharedValue(0);
+  const opacity = useSharedValue(0);
+  const translateY = useSharedValue(TOAST_SLIDE_OFFSET);
   const dragY = useSharedValue(0);
 
   useEffect(() => {
     if (isVisible) {
       dragY.value = 0;
-      progress.value = withSpring(1, { damping: 18, stiffness: 180 });
+      opacity.value = withTiming(1, { duration: 200 });
+      translateY.value = withSpring(0, { damping: 18, stiffness: 180 });
     } else {
-      progress.value = withTiming(0, { duration: 200 });
+      opacity.value = withTiming(0, { duration: 200 });
+      translateY.value = withTiming(TOAST_SLIDE_OFFSET, { duration: 200 });
     }
-  }, [isVisible, progress, dragY]);
+  }, [isVisible, opacity, translateY, dragY]);
 
   const gesture = Gesture.Pan()
     .onUpdate((e) => {
@@ -44,12 +46,8 @@ export const useReanimatedStyles = (isVisible: boolean, onDismiss: () => void) =
     });
 
   const wrapper = useAnimatedStyle(() => ({
-    opacity: progress.value,
-    transform: [
-      {
-        translateY: interpolate(progress.value, [0, 1], [TOAST_SLIDE_OFFSET, 0]) + dragY.value,
-      },
-    ],
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value + dragY.value }],
   }), []);
 
   return {
