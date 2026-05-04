@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { Toaster, ToasterApi } from 'rubber-duck-ui';
+import { ToasterApi } from 'rubber-duck-ui';
 import { styles } from './Toaster.styles';
 
 const Trigger = ({ label, onPress }: { label: string; onPress: () => void }) => (
@@ -52,7 +52,6 @@ const DefaultDemo = () => (
         })
       }
     />
-    <Toaster />
   </View>
 );
 
@@ -76,7 +75,6 @@ const InteractiveDemo = () => {
   return (
     <View style={styles.container}>
       <Trigger label="Cycle through types" onPress={showNext} />
-      <Toaster />
     </View>
   );
 };
