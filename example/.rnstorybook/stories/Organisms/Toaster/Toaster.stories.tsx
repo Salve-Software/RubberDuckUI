@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-native';
 import type { IToasterApi } from 'rubber-duck-ui';
 import React, { useRef, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 import { BottomModalApi, Toaster, ToasterApi } from 'rubber-duck-ui';
 import { styles } from './Toaster.styles';
 
@@ -84,7 +85,7 @@ const ModalContent = () => {
   const toasterRef = useRef<IToasterApi>(null);
 
   return (
-    <View style={styles.modalContent}>
+    <BottomSheetView style={styles.modalContent}>
       <Toaster ref={toasterRef} />
       <Trigger
         label="Show Success"
@@ -102,7 +103,7 @@ const ModalContent = () => {
         label="Show Info"
         onPress={() => toasterRef.current?.show({ type: 'info', title: 'Info', description: 'Local toaster, not global.' })}
       />
-    </View>
+    </BottomSheetView>
   );
 };
 
