@@ -38,7 +38,6 @@ export const useToasterViewModel = () => {
       clearTimer();
       ToasterApi.setRef({ current: null });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
