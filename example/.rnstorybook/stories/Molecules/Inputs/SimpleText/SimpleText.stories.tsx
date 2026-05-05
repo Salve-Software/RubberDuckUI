@@ -107,3 +107,28 @@ export const Form_: Story = {
   name: 'Form',
   render: () => <Form />,
 };
+
+const PasswordField = () => {
+  const [password, setPassword] = useState('');
+  const [isSecure, setIsSecure] = useState(true);
+
+  return (
+    <SimpleText
+      title="Password"
+      placeholder="Type your password"
+      value={password}
+      onChangeValue={setPassword}
+      isRequired
+      secureTextEntry={isSecure}
+      autoCapitalize="none"
+      rightIcon={{
+        icon: isSecure ? 'Eye' : 'EyeOff',
+        onPress: () => setIsSecure((prev) => !prev),
+      }}
+    />
+  );
+};
+
+export const Password: Story = {
+  render: () => <PasswordField />,
+};

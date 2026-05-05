@@ -21,6 +21,8 @@ export const useStyles = (props: ISimpleTextProps) => {
     },
 
     inputWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
       borderWidth: 2,
       borderColor: colors.borderDefault,
       borderRadius: Tokens.radii({ key: 'lg' }),
@@ -28,11 +30,16 @@ export const useStyles = (props: ISimpleTextProps) => {
     },
 
     textInput: {
+      flex: 1,
       minHeight: 48,
       paddingVertical: Tokens.spacer({ key: 'sm' }),
       paddingHorizontal: Tokens.spacer({ key: 'sm' }),
       fontSize: Tokens.fontSize({ key: 'md' }),
       color: colors.textPrimary,
+    },
+
+    rightIconWrapper: {
+      paddingRight: Tokens.spacer({ key: 'sm' }),
     },
   });
 };
