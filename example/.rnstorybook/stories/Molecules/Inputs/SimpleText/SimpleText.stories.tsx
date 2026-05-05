@@ -122,7 +122,7 @@ const PasswordField = () => {
       secureTextEntry={isSecure}
       autoCapitalize="none"
       rightIcon={{
-        icon: isSecure ? 'Eye' : 'EyeOff',
+        icon: isSecure ? 'EyeOff' : 'Eye',
         onPress: () => setIsSecure((prev) => !prev),
       }}
     />
