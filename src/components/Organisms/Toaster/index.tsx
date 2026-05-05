@@ -28,12 +28,12 @@ export const Toaster: React.FC<IToasterProps> = ({ ref }) => {
               color="white"
             />
             <View style={styles.textWrapper}>
-              <Text weight="semibold" color="textInverse">
+              <Text size="sm" weight="semibold" color="textInverse">
                 {toasterProps.title}
               </Text>
               {toasterProps.description
                 ?
-                <Text color="textInverse">
+                <Text size="sm" color="textInverse">
                   {toasterProps.description}
                 </Text>
                 : null

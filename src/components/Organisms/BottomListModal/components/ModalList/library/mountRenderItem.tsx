@@ -58,8 +58,8 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
           <TouchableOpacity activeOpacity={0.8} style={styles.itemWrapper} onPress={onPressItem}>
             <Avatar source={item.avatarSource} size="small_32" />
             <View style={styles.textWrapper}>
-              <Text>{item.title}</Text>
-              {item.subTitle ? <Text size="sm" color="textSecondary">{item.subTitle}</Text> : null}
+              <Text size="sm">{item.title}</Text>
+              {item.subTitle ? <Text size="xs" color="textSecondary">{item.subTitle}</Text> : null}
             </View>
           </TouchableOpacity>
         );
@@ -73,7 +73,7 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
               size="tiny_20"
               color={item.isDanger ? 'error' : 'textPrimary'}
             />
-            <Text color={item.isDanger ? 'error' : 'textPrimary'}>{item.title}</Text>
+            <Text size="sm" color={item.isDanger ? 'error' : 'textPrimary'}>{item.title}</Text>
           </TouchableOpacity>
         );
 

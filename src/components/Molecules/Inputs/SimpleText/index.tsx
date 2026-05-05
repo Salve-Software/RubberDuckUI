@@ -42,7 +42,7 @@ export const SimpleText: React.FC<ISimpleTextProps> = (props) => {
       {title || isRequired
         ?
         <View style={styles.headerWrapper}>
-          {title ? <Text weight="semibold" align="left">{title}</Text> : null}
+          {title ? <Text size="sm" weight="semibold" align="left">{title}</Text> : null}
 
           {isRequired
             ?

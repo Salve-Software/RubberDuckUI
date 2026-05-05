@@ -43,10 +43,10 @@ export const RadioButton: React.FC<IRadioButtonProps> = (props) => {
 
       {title || subTitle ? (
         <View>
-          {title ? <Text numberOfLines={1}>{title}</Text> : null}
+          {title ? <Text size="sm" numberOfLines={1}>{title}</Text> : null}
 
           {subTitle ? (
-            <Text color="textSecondary" numberOfLines={1}>
+            <Text size="sm" color="textSecondary" numberOfLines={1}>
               {subTitle}
             </Text>
           ) : null}

@@ -40,7 +40,7 @@ export const NumberField: React.FC<INumberFieldProps> = (props) => {
       {title || isRequired
         ?
         <View style={styles.headerWrapper}>
-          {title ? <Text weight="semibold" align="left">{title}</Text> : null}
+          {title ? <Text size="sm" weight="semibold" align="left">{title}</Text> : null}
 
           {isRequired
             ?
@@ -75,7 +75,7 @@ export const NumberField: React.FC<INumberFieldProps> = (props) => {
         {rightLabel
           ?
           <View style={styles.rightLabel}>
-            <Text size="sm" color="textSecondary">{rightLabel}</Text>
+            <Text size="xs" color="textSecondary">{rightLabel}</Text>
           </View>
           : null
         }

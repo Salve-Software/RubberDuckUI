@@ -35,9 +35,9 @@ export const CheckBox: React.FC<ICheckBoxProps> = (props) => {
 
       {title || subTitle ? (
         <View style={styles.titles}>
-          {title ? <Text>{title}</Text> : null}
+          {title ? <Text size="sm">{title}</Text> : null}
 
-          {subTitle ? <Text weight="light">{subTitle}</Text> : null}
+          {subTitle ? <Text size="sm" weight="light">{subTitle}</Text> : null}
         </View>
       ) : null}
     </TouchableOpacity>

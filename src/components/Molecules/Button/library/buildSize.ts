@@ -18,7 +18,7 @@ export const buildSize = (size: ButtonSize): ButtonSizeConfig => {
       return {
         height: 36,
         paddingHorizontal: Tokens.spacer({ key: 'sm' }),
-        fontSize: 'sm',
+        fontSize: 'xs',
         iconSize: 'small_16',
         loadingSize: 'tiny_48',
       };
@@ -27,7 +27,7 @@ export const buildSize = (size: ButtonSize): ButtonSizeConfig => {
       return {
         height: 44,
         paddingHorizontal: Tokens.spacer({ key: 'md' }),
-        fontSize: 'md',
+        fontSize: 'sm',
         iconSize: 'tiny_20',
         loadingSize: 'small_64',
       };
@@ -37,7 +37,7 @@ export const buildSize = (size: ButtonSize): ButtonSizeConfig => {
       return {
         height: 52,
         paddingHorizontal: Tokens.spacer({ key: 'lg' }),
-        fontSize: 'lg',
+        fontSize: 'md',
         iconSize: 'tiny_20',
         loadingSize: 'small_64',
       };
