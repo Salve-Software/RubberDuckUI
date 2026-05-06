@@ -14,3 +14,5 @@ export const Icon: React.FC<IIconProps> = (props) => {
 
   return <IconComponent size={iconSize} color={colors[color]} />;
 };
+
+export type { IconName } from './types';
