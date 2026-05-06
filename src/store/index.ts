@@ -13,7 +13,7 @@ export const useRubberDuckStore = create<IStoreState>((set) => ({
       const isDarkMode = config.darkMode ?? state.isDarkMode;
       return {
         isDarkMode,
-        colors: config.colors ?? (isDarkMode ? dark : light),
+        colors: { ...(isDarkMode ? dark : light), ...config.colors },
       };
     });
   },
