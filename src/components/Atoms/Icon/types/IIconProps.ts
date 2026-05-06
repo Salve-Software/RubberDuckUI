@@ -6,4 +6,5 @@ export type IIconProps = {
   icon: IconName;
   size?: IconSize;
   color?: keyof IColors;
+  hexColor?: string;
 };
