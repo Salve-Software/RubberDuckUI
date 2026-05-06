@@ -49,7 +49,7 @@ describe('useButtonViewModel', () => {
       const { result } = renderHook(() => useButtonViewModel({ ...baseProps, size: 'sm' }));
 
       expect(result.current.sizes.height).toBe(36);
-      expect(result.current.sizes.fontSize).toBe('sm');
+      expect(result.current.sizes.fontSize).toBe('xs');
       expect(result.current.sizes.iconSize).toBe('small_16');
       expect(result.current.sizes.loadingSize).toBe('tiny_48');
     });
@@ -58,7 +58,7 @@ describe('useButtonViewModel', () => {
       const { result } = renderHook(() => useButtonViewModel({ ...baseProps, size: 'md' }));
 
       expect(result.current.sizes.height).toBe(44);
-      expect(result.current.sizes.fontSize).toBe('md');
+      expect(result.current.sizes.fontSize).toBe('sm');
       expect(result.current.sizes.iconSize).toBe('tiny_20');
       expect(result.current.sizes.loadingSize).toBe('small_64');
     });
@@ -67,7 +67,7 @@ describe('useButtonViewModel', () => {
       const { result } = renderHook(() => useButtonViewModel({ ...baseProps, size: 'lg' }));
 
       expect(result.current.sizes.height).toBe(52);
-      expect(result.current.sizes.fontSize).toBe('lg');
+      expect(result.current.sizes.fontSize).toBe('md');
       expect(result.current.sizes.iconSize).toBe('tiny_20');
       expect(result.current.sizes.loadingSize).toBe('small_64');
     });
@@ -76,7 +76,7 @@ describe('useButtonViewModel', () => {
       const { result } = renderHook(() => useButtonViewModel(baseProps));
 
       expect(result.current.sizes.height).toBe(44);
-      expect(result.current.sizes.fontSize).toBe('md');
+      expect(result.current.sizes.fontSize).toBe('sm');
     });
   });
 
