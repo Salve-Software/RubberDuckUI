@@ -40,7 +40,7 @@ export const MultilineText: React.FC<IMultilineTextProps> = (props) => {
       {title || isRequired
         ?
         <View style={styles.headerWrapper}>
-          {title ? <Text weight="semibold" align="left">{title}</Text> : null}
+          {title ? <Text size="sm" weight="semibold" align="left">{title}</Text> : null}
 
           {isRequired
             ?

@@ -24,7 +24,7 @@ export const ModalList: React.FC<IModalListProps> = (props) => {
   const renderHeader = useCallback(() => {
     return (
       <View style={styles.header}>
-        <Text weight="semibold" size="xl">{title}</Text>
+        <Text weight="semibold" size="lg">{title}</Text>
       </View>
     )
   }, [styles.header, title]);

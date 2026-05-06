@@ -1,0 +1,1 @@
+export const TOAST_DRAG_DISMISS_THRESHOLD = 40;

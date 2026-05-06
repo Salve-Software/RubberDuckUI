@@ -65,8 +65,8 @@ export const Avatar: React.FC<IAvatarProps> = (props) => {
             align="center"
             color="white"
             size={size === 'medium_40' || size === 'small_32'
-              ? 'lg'
-              : 'xxl'
+              ? 'md'
+              : 'xl'
             }>
             {letters}
           </Text>

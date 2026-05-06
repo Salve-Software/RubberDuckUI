@@ -139,3 +139,20 @@ export const Truncated: Story = {
       'This is a very long text that should be truncated after one line because numberOfLines is set to 1',
   },
 };
+
+export const InlineBold: Story = {
+  args: {
+    children: 'I agree to the **Terms & Privacy Policy**',
+  },
+};
+
+export const InlineBoldVariants: Story = {
+  render: () => (
+    <View style={styles.container}>
+      <Text>{'I agree to the **Terms & Privacy Policy**'}</Text>
+      <Text size="lg">{'**Bold** at the start of the sentence'}</Text>
+      <Text size="sm" color="textSecondary">{'Mix of **bold** and regular text here'}</Text>
+      <Text>{'**Multiple** bold **segments** in one text'}</Text>
+    </View>
+  ),
+};

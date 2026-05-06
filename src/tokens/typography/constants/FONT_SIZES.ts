@@ -1,10 +1,10 @@
 export const FONT_SIZES = {
-  xs: 10,
-  sm: 12,
-  md: 14,
-  lg: 16,
-  xl: 20,
-  xxl: 24,
-  xxxl: 32,
-  display: 40,
+  xs: 12,
+  sm: 14,
+  md: 16,
+  lg: 20,
+  xl: 24,
+  xxl: 32,
+  xxxl: 40,
+  display: 48,
 } as const;

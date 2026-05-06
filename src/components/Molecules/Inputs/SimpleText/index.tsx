@@ -1,6 +1,6 @@
 import type { ISimpleTextProps } from './types';
 import React from 'react';
-import { TextInput, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useStyles } from './styles';
 import { useRubberDuckStore } from '../../../../store';
@@ -16,6 +16,9 @@ export const SimpleText: React.FC<ISimpleTextProps> = (props) => {
     isRequired,
     isReadOnly,
     isDisabled,
+    rightIcon,
+    secureTextEntry,
+    autoCapitalize,
   } = props;
 
   const colors = useRubberDuckStore((s) => s.colors);
@@ -39,7 +42,7 @@ export const SimpleText: React.FC<ISimpleTextProps> = (props) => {
       {title || isRequired
         ?
         <View style={styles.headerWrapper}>
-          {title ? <Text weight="semibold" align="left">{title}</Text> : null}
+          {title ? <Text size="sm" weight="semibold" align="left">{title}</Text> : null}
 
           {isRequired
             ?
@@ -65,10 +68,24 @@ export const SimpleText: React.FC<ISimpleTextProps> = (props) => {
           placeholder={placeholder}
           placeholderTextColor={colors.textSecondary}
           autoCorrect={false}
+          autoCapitalize={autoCapitalize}
           autoComplete="off"
           readOnly={isReadOnly}
           editable={!isDisabled}
+          secureTextEntry={secureTextEntry}
         />
+
+        {rightIcon
+          ?
+          <TouchableOpacity
+            style={styles.rightIconWrapper}
+            onPress={rightIcon.onPress}
+            hitSlop={8}
+            activeOpacity={0.8}>
+            <Icon icon={rightIcon.icon} size="small_16" color="textSecondary" />
+          </TouchableOpacity>
+          : null
+        }
       </Animated.View>
     </View>
   );

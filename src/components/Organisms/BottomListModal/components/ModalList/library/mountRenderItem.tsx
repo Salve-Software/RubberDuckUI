@@ -55,11 +55,11 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
 
       case 'avatar':
         return (
-          <TouchableOpacity style={styles.itemWrapper} onPress={onPressItem}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.itemWrapper} onPress={onPressItem}>
             <Avatar source={item.avatarSource} size="small_32" />
             <View style={styles.textWrapper}>
-              <Text>{item.title}</Text>
-              {item.subTitle ? <Text size="sm" color="textSecondary">{item.subTitle}</Text> : null}
+              <Text size="sm">{item.title}</Text>
+              {item.subTitle ? <Text size="xs" color="textSecondary">{item.subTitle}</Text> : null}
             </View>
           </TouchableOpacity>
         );
@@ -67,13 +67,13 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
       case 'icon':
         if (!item.iconName) { return null; }
         return (
-          <TouchableOpacity style={styles.itemWrapper} onPress={onPressItem}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.itemWrapper} onPress={onPressItem}>
             <Icon
               icon={item.iconName}
               size="tiny_20"
               color={item.isDanger ? 'error' : 'textPrimary'}
             />
-            <Text color={item.isDanger ? 'error' : 'textPrimary'}>{item.title}</Text>
+            <Text size="sm" color={item.isDanger ? 'error' : 'textPrimary'}>{item.title}</Text>
           </TouchableOpacity>
         );
 
