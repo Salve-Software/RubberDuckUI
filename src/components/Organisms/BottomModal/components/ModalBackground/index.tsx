@@ -1,6 +1,6 @@
 import type { BottomSheetBackgroundProps } from '@gorhom/bottom-sheet';
 import React from 'react';
-import { View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import { useStyles } from './styles';
 
 export const ModalBackground: React.FC<BottomSheetBackgroundProps> = (props) => {
@@ -8,6 +8,6 @@ export const ModalBackground: React.FC<BottomSheetBackgroundProps> = (props) => 
   const styles = useStyles();
 
   return (
-    <View style={[style, styles.background]} />
+    <Animated.View style={[style, styles.background]} />
   );
 };
