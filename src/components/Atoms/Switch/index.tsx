@@ -11,7 +11,7 @@ export const Switch: React.FC<ISwitchProps> = (props) => {
   const { isOn, disabled } = props;
 
   const colors = useRubberDuckStore((s) => s.colors);
-  const styles = useStyles();
+  const styles = useStyles(!!disabled);
   const reanimatedStyles = useReanimatedStyles({
     isOn: !!isOn,
     accentColor: colors.accent,
