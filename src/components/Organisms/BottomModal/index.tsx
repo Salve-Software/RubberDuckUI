@@ -8,6 +8,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { useStyles } from './styles';
 import { useBottomModalViewModel } from './hooks';
+import { ModalBackground } from './components';
 
 export const BottomModal: React.FC<IBottomModalProps> = () => {
   const { height: screenHeight } = useWindowDimensions();
@@ -33,8 +34,8 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
       enableDynamicSizing
       maxDynamicContentSize={screenHeight * 0.85}
       backdropComponent={renderBackdrop}
+      backgroundComponent={ModalBackground}
       handleIndicatorStyle={styles.handleIndicator}
-      backgroundStyle={styles.background}
       enablePanDownToClose>
       {bottomModalProps?.content ?? null}
     </BottomSheetModal>
