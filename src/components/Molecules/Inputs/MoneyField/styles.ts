@@ -22,7 +22,7 @@ export const useStyles = (props: IMoneyFieldProps) => {
 
     inputWrapper: {
       borderWidth: 2,
-      borderColor: colors.borderDefault,
+      borderColor: colors.borderSubtle,
       borderRadius: Tokens.radii({ key: 'lg' }),
       backgroundColor: colors.background,
     },

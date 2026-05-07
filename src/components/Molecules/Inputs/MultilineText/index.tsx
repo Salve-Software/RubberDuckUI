@@ -32,7 +32,7 @@ export const MultilineText: React.FC<IMultilineTextProps> = (props) => {
   const reanimatedStyles = useReanimatedStyles({
     isFocused,
     accentColor: colors.accent,
-    borderDefaultColor: colors.borderDefault,
+    borderDefaultColor: colors.borderSubtle,
   });
 
   return (
