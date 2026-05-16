@@ -116,6 +116,35 @@ const InsideModalDemo = () => (
   </View>
 );
 
+const LoadingDemo = () => (
+  <View style={styles.container}>
+    <Trigger
+      label="Show Loading"
+      onPress={() =>
+        ToasterApi.show({
+          type: 'info',
+          title: 'Loading...',
+          loading: true,
+        })
+      }
+    />
+    <Trigger
+      label="Resolve Loading"
+      onPress={() =>
+        ToasterApi.show({
+          type: 'success',
+          title: 'Done!',
+          description: 'Action completed.',
+        })
+      }
+    />
+    <Trigger
+      label="Hide"
+      onPress={() => ToasterApi.hide()}
+    />
+  </View>
+);
+
 const meta = {
   title: 'Organisms/Toaster',
   component: View,
@@ -135,4 +164,8 @@ export const Interactive: Story = {
 
 export const InsideModal: Story = {
   render: () => <InsideModalDemo />,
+};
+
+export const Loading: Story = {
+  render: () => <LoadingDemo />,
 };
