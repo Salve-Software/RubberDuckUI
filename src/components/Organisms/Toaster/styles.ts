@@ -30,6 +30,20 @@ export const useStyles = (type: ToasterType | undefined) => {
       zIndex: 999,
     },
 
+    wrapperLoading: {
+      position: 'absolute',
+      bottom: Tokens.spacer({ key: 'lg' }),
+      alignSelf: 'center',
+      paddingVertical: Tokens.spacer({ key: 'sm' }),
+      paddingHorizontal: Tokens.spacer({ key: 'md' }),
+      borderRadius: Tokens.radii({ key: 'full' }),
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: Tokens.spacer({ key: 'xs' }),
+      backgroundColor,
+      zIndex: 999,
+    },
+
     textWrapper: {
       flex: 1,
     },
