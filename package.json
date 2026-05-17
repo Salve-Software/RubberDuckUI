@@ -10,7 +10,8 @@
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "test": "jest"
+    "test": "jest",
+    "release": "semantic-release"
   },
   "exports": {
     ".": {
@@ -38,6 +39,11 @@
     "@gorhom/bottom-sheet": "^5.1.0",
     "@react-native/babel-preset": "0.83.0",
     "@react-native/eslint-config": "0.83.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.8",
+    "@semantic-release/release-notes-generator": "^14.1.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
@@ -63,6 +69,7 @@
     "react-native-safe-area-context": "^5.4.0",
     "react-native-svg": "^15.15.3",
     "react-test-renderer": "19.2.0",
+    "semantic-release": "^25.0.3",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
   },
