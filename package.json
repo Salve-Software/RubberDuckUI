@@ -28,6 +28,7 @@
   "author": "eumaninho54 <angelo.omarzinho@outlook.com> (https://github.com/eumaninho54)",
   "license": "MIT",
   "dependencies": {
+    "@legendapp/list": "^2.0.19",
     "lucide-react-native": "^0.577.0",
     "zustand": "^5.0.11"
   },
