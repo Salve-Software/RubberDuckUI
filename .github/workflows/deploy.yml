@@ -1,139 +1,51 @@
-name: Deploy Release
+name: Release
 
 on:
-  issue_comment:
-    types: [created]
+  workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
-  issues: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    if: github.event.issue.pull_request != null && github.event.comment.body == 'DEPLOY-RELEASE'
+  release:
+    name: Release
     runs-on: ubuntu-latest
 
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
 
     steps:
-      - name: Resolve PR metadata
-        run: |
-          PR_NUMBER="${{ github.event.issue.number }}"
-          echo "PR_NUMBER=$PR_NUMBER" >> "$GITHUB_ENV"
-
-          PR_JSON=$(gh api repos/${{ github.repository }}/pulls/$PR_NUMBER)
-          PR_BRANCH=$(echo "$PR_JSON" | jq -r '.head.ref')
-          PR_STATE=$(echo "$PR_JSON" | jq -r '.state')
-
-          echo "PR_BRANCH=$PR_BRANCH" >> "$GITHUB_ENV"
-
-          if [ "$PR_STATE" != "open" ]; then
-            gh api repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
-              --method POST \
-              --field body="Deploy cancelled: this PR is not open (state: \`$PR_STATE\`)."
-            exit 1
-          fi
-
-      - name: Check authorization
-        run: |
-          COMMENTER="${{ github.event.comment.user.login }}"
-
-          PERMISSION=$(gh api \
-            repos/${{ github.repository }}/collaborators/$COMMENTER/permission \
-            --jq '.permission' 2>/dev/null || echo "none")
-
-          IS_ADMIN=false
-          if [ "$PERMISSION" = "admin" ]; then
-            IS_ADMIN=true
-          fi
-
-          APPROVALS=$(gh api \
-            repos/${{ github.repository }}/pulls/${{ env.PR_NUMBER }}/reviews \
-            --jq '[.[] | select(.state == "APPROVED")] | length')
-
-          echo "Commenter: $COMMENTER | Is admin: $IS_ADMIN | Approvals: $APPROVALS"
-
-          if [ "$IS_ADMIN" = "false" ] && [ "$APPROVALS" -lt 2 ]; then
-            gh api repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
-              --method POST \
-              --field body="Deploy cancelled: **@$COMMENTER** is not a repo admin and this PR only has **$APPROVALS/2** required approvals. Either an admin must trigger the deploy, or the PR needs at least 2 approvals."
-            exit 1
-          fi
-
-      - name: Validate release branch
-        run: |
-          BRANCH="${{ env.PR_BRANCH }}"
-
-          if ! echo "$BRANCH" | grep -qE '^release/v[0-9]+\.[0-9]+\.[0-9]+$'; then
-            gh api repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
-              --method POST \
-              --field body="Deploy cancelled: branch \`$BRANCH\` does not match the required pattern \`release/vX.Y.Z\`. Only release branches may be deployed to main."
-            exit 1
-          fi
-
-          VERSION="${BRANCH#release/v}"
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
-          echo "TAG=v$VERSION"    >> "$GITHUB_ENV"
-
-      - name: Merge PR into main
-        run: |
-          gh pr merge ${{ env.PR_NUMBER }} \
-            --merge \
-            --repo ${{ github.repository }}
-
-      - name: Checkout main
-        uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
-      - name: Configure git identity
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - name: Bump package.json version
-        run: |
-          jq --arg v "${{ env.VERSION }}" '.version = $v' package.json > package.json.tmp
-          mv package.json.tmp package.json
-          git add package.json
-          if git diff --cached --quiet; then
-            echo "Version already at ${{ env.VERSION }}, skipping commit."
-          else
-            git commit -m "chore(release): bump version to ${{ env.VERSION }}"
-            git push
-          fi
+      - name: Enable Corepack
+        run: corepack enable
 
-      - name: Tag merge commit on main
-        run: |
-          git fetch origin main
-          git tag "${{ env.TAG }}" origin/main
-          git push origin "${{ env.TAG }}"
+      - name: Install dependencies
+        run: yarn install --immutable
 
-      - name: Create GitHub Release
-        run: |
-          gh release create "${{ env.TAG }}" \
-            --title "${{ env.TAG }}" \
-            --generate-notes \
-            --repo ${{ github.repository }}
+      - name: Build lib
+        run: yarn prepare
 
-      - name: Delete release branch
-        run: |
-          git push origin --delete "${{ env.PR_BRANCH }}" || true
-
-      - name: Post success comment
-        if: success()
-        run: |
-          gh api repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
-            --method POST \
-            --field body="Deployed successfully. Version \`${{ env.VERSION }}\` has been tagged as \`${{ env.TAG }}\`, a GitHub Release has been created with auto-generated release notes, and this PR has been merged into \`main\`."
-
-      - name: Post failure comment
-        if: failure()
-        run: |
-          gh api repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
-            --method POST \
-            --field body="Deploy failed. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details." \
-            2>/dev/null || true
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: '${{ github.actor }}@users.noreply.github.com'
+          GIT_COMMITTER_NAME: ${{ github.actor }}
+          GIT_COMMITTER_EMAIL: '${{ github.actor }}@users.noreply.github.com'
+        run: yarn release
