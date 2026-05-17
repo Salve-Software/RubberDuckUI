@@ -23,18 +23,18 @@ export const SimpleText: React.FC<ISimpleTextProps> = (props) => {
 
   const colors = useRubberDuckStore((s) => s.colors);
   const styles = useStyles(props);
-  
+
   const {
     isFocused,
     onFocus,
     onBlur,
     onChangeText,
   } = useSimpleTextViewModel(props);
-  
+
   const reanimatedStyles = useReanimatedStyles({
     isFocused,
     accentColor: colors.accent,
-    borderDefaultColor: colors.borderDefault,
+    borderDefaultColor: colors.borderSubtle,
   });
 
   return (

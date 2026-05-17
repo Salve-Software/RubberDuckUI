@@ -33,7 +33,7 @@ export const MoneyField: React.FC<IMoneyFieldProps> = (props) => {
   const reanimatedStyles = useReanimatedStyles({
     isFocused,
     accentColor: colors.accent,
-    borderDefaultColor: colors.borderDefault,
+    borderDefaultColor: colors.borderSubtle,
   });
 
   return (

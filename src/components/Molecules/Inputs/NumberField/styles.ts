@@ -24,7 +24,7 @@ export const useStyles = (props: INumberFieldProps) => {
       flexDirection: 'row',
       alignItems: 'center',
       borderWidth: 2,
-      borderColor: colors.borderDefault,
+      borderColor: colors.borderSubtle,
       borderRadius: Tokens.radii({ key: 'lg' }),
       backgroundColor: colors.background,
     },

@@ -3,7 +3,7 @@ import { useRubberDuckStore } from '../../../store';
 import { Tokens } from '../../../tokens/Tokens.class';
 import { SWITCH_TRACK_WIDTH, SWITCH_TRACK_HEIGHT, SWITCH_THUMB_SIZE, SWITCH_PADDING } from './constants';
 
-export const useStyles = () => {
+export const useStyles = (disabled: boolean) => {
   const colors = useRubberDuckStore((s) => s.colors);
 
   return StyleSheet.create({
@@ -13,6 +13,7 @@ export const useStyles = () => {
       borderRadius: Tokens.radii({ key: 'full' }),
       padding: SWITCH_PADDING,
       justifyContent: 'center',
+      opacity: disabled ? 0.8 : 1,
     },
 
     thumb: {

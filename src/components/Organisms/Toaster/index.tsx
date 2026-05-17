@@ -8,45 +8,62 @@ import { useToasterViewModel, useReanimatedStyles } from './hooks';
 import { TYPE_ICON_MAP } from './constants';
 import { Text } from '../../Atoms/Text';
 import { Icon } from '../../Atoms/Icon';
+import { Loading } from '../../Atoms/Loading';
 
 export const Toaster: React.FC<IToasterProps> = ({ ref }) => {
   const { toasterProps, isVisible, hide } = useToasterViewModel(ref ?? null);
   const styles = useStyles(toasterProps?.type);
   const reanimatedStyles = useReanimatedStyles(isVisible, hide);
 
+  const isLoading = toasterProps?.loading ?? false;
+
   return (
     <GestureDetector gesture={reanimatedStyles.gesture}>
       <Animated.View
         pointerEvents={isVisible ? 'box-none' : 'none'}
-        style={[styles.wrapper, reanimatedStyles.wrapper]}>
+        style={[isLoading ? styles.wrapperLoading : styles.wrapper, reanimatedStyles.wrapper]}>
         {toasterProps
           ?
           <>
-            <Icon
-              icon={TYPE_ICON_MAP[toasterProps.type]}
-              size="small_16"
-              color="white"
-            />
-            <View style={styles.textWrapper}>
-              <Text size="sm" weight="semibold" color="textInverse">
-                {toasterProps.title}
-              </Text>
-              {toasterProps.description
-                ?
-                <Text size="sm" color="textInverse">
-                  {toasterProps.description}
+            {isLoading
+              ?
+              <>
+                <Loading size="tiny_48" color="white" />
+                
+                <Text size="sm" weight="semibold" color="textInverse">
+                  {toasterProps.title}
                 </Text>
-                : null
-              }
-            </View>
+              </>
+              :
+              <>
+                <Icon
+                  icon={TYPE_ICON_MAP[toasterProps.type]}
+                  size="small_16"
+                  color="white"
+                />
+                <View style={styles.textWrapper}>
+                  <Text size="sm" weight="semibold" color="textInverse">
+                    {toasterProps.title}
+                  </Text>
+                  
+                  {toasterProps.description
+                    ?
+                    <Text size="sm" color="textInverse">
+                      {toasterProps.description}
+                    </Text>
+                    : null
+                  }
+                </View>
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={hide}
-              style={styles.closeButton}
-              hitSlop={8}>
-              <Icon icon="X" size="small_16" color="white" />
-            </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={hide}
+                  style={styles.closeButton}
+                  hitSlop={8}>
+                  <Icon icon="X" size="small_16" color="white" />
+                </TouchableOpacity>
+              </>
+            }
           </>
           : null
         }

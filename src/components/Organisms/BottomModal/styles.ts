@@ -12,9 +12,5 @@ export const useStyles = () => {
       height: 4,
       borderRadius: Tokens.radii({ key: 'full' }),
     },
-
-    background: {
-      backgroundColor: colors.surface,
-    },
   });
 };

@@ -31,26 +31,32 @@ export const mountRenderItem = (params: IMountRenderItemParams): ListRenderItem<
     switch (item.type) {
       case 'checkbox':
         return (
-          <View style={styles.selectableItemWrapper}>
+          <TouchableOpacity
+            style={styles.selectableItemWrapper}
+            activeOpacity={0.8}
+            onPress={onPressItem}>
             <CheckBox
               title={item.title}
               subTitle={item.subTitle}
               isChecked={item.isChecked}
               onPress={onPressItem}
             />
-          </View>
+          </TouchableOpacity>
         );
 
       case 'radio':
         return (
-          <View style={styles.selectableItemWrapper}>
+          <TouchableOpacity
+            style={styles.selectableItemWrapper}
+            activeOpacity={0.8}
+            onPress={onPressItem}>
             <RadioButton
               title={item.title}
               subTitle={item.subTitle}
               isChecked={item.isChecked}
               onPress={onPressItem}
             />
-          </View>
+          </TouchableOpacity>
         );
 
       case 'avatar':

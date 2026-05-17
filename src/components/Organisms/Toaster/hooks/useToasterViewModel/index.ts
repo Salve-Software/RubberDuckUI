@@ -24,7 +24,9 @@ export const useToasterViewModel = (ref: Ref<IToasterApi> | null) => {
     clearTimer();
     setToasterPropsState(props);
     setIsVisible(true);
-    timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? DEFAULT_TOAST_DURATION_MS);
+    if (!props.loading) {
+      timeoutRef.current = setTimeout(() => setIsVisible(false), props.duration ?? DEFAULT_TOAST_DURATION_MS);
+    }
   };
 
   const hide = () => {

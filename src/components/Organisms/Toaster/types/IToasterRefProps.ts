@@ -5,4 +5,5 @@ export interface IToasterRefProps {
   title: string;
   description?: string;
   duration?: number;
+  loading?: boolean;
 }
