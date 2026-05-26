@@ -41,3 +41,5 @@ export const PillsGroup: React.FC<IPillsGroupProps> = (props) => {
     />
   )
 }
+
+export type { IPill } from './components';

@@ -28,3 +28,5 @@ export const Pill: React.FC<IPillProps> = (props) => {
     </AnimatedTouchable>
   )
 }
+
+export type { IPill } from './types';
