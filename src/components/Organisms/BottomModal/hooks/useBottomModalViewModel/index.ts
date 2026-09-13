@@ -8,8 +8,10 @@ export const useBottomModalViewModel = () => {
   
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const imperativeRef = useRef<IBottomModalApi | null>(null);
+  const isOpenRef = useRef(false);
 
   const open = useCallback((props: IBottomModalRefProps) => {
+    isOpenRef.current = true;
     setBottomModalPropsState(props);
     requestAnimationFrame(() => {
       bottomSheetRef.current?.present();
@@ -17,7 +19,13 @@ export const useBottomModalViewModel = () => {
   }, []);
 
   const dismiss = useCallback(() => {
+    if (!isOpenRef.current) return;
+
     bottomSheetRef.current?.dismiss();
+  }, []);
+
+  const onDismiss = useCallback(() => {
+    isOpenRef.current = false;
   }, []);
 
   useEffect(() => {
@@ -28,5 +36,6 @@ export const useBottomModalViewModel = () => {
   return {
     bottomSheetRef,
     bottomModalProps,
+    onDismiss,
   };
 };

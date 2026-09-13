@@ -52,6 +52,39 @@ describe('useBottomModalViewModel', () => {
         act(() => { BottomModalApi.dismiss(); });
       }).not.toThrow();
     });
+
+    it('Does NOT reach the sheet when nothing was opened', () => {
+      const { result } = renderHook(() => useBottomModalViewModel());
+      const sheet = { present: jest.fn(), dismiss: jest.fn() };
+      result.current.bottomSheetRef.current = sheet as never;
+
+      act(() => { BottomModalApi.dismiss(); });
+
+      expect(sheet.dismiss).not.toHaveBeenCalled();
+    });
+
+    it('Reaches the sheet while it is open', () => {
+      const { result } = renderHook(() => useBottomModalViewModel());
+      const sheet = { present: jest.fn(), dismiss: jest.fn() };
+      result.current.bottomSheetRef.current = sheet as never;
+
+      act(() => { BottomModalApi.open({ content: null }); });
+      act(() => { BottomModalApi.dismiss(); });
+
+      expect(sheet.dismiss).toHaveBeenCalledTimes(1);
+    });
+
+    it('Does NOT reach the sheet again after it closed itself', () => {
+      const { result } = renderHook(() => useBottomModalViewModel());
+      const sheet = { present: jest.fn(), dismiss: jest.fn() };
+      result.current.bottomSheetRef.current = sheet as never;
+
+      act(() => { BottomModalApi.open({ content: null }); });
+      act(() => { result.current.onDismiss(); });
+      act(() => { BottomModalApi.dismiss(); });
+
+      expect(sheet.dismiss).not.toHaveBeenCalled();
+    });
   });
 
   describe('bottomSheetRef', () => {
