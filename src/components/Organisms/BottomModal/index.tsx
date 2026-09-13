@@ -14,7 +14,7 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
   const { height: screenHeight } = useWindowDimensions();
   const styles = useStyles();
 
-  const { bottomSheetRef, bottomModalProps } = useBottomModalViewModel();
+  const { bottomSheetRef, bottomModalProps, onDismiss } = useBottomModalViewModel();
 
   const renderBackdrop = useCallback((props: BottomSheetBackdropProps) => {
     return (
@@ -31,6 +31,7 @@ export const BottomModal: React.FC<IBottomModalProps> = () => {
   return (
     <BottomSheetModal
       ref={bottomSheetRef}
+      onDismiss={onDismiss}
       enableDynamicSizing
       maxDynamicContentSize={screenHeight * 0.85}
       backdropComponent={renderBackdrop}
