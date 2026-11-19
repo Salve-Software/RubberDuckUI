@@ -17,5 +17,9 @@ export const useRubberDuckStore = create<IStoreState>((set) => ({
       };
     });
   },
-  _reset: () => set({ ...defaultState }),
+  _reset: () =>
+    set({
+      isDarkMode: defaultState.isDarkMode,
+      colors: defaultState.colors,
+    }),
 }));
