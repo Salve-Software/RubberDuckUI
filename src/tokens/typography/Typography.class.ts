@@ -1,6 +1,13 @@
 import type { TextStyle } from 'react-native';
-import type { FamilyKey, IFamilyProps, ISizeProps, IWeightProps } from './types';
-import { FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS } from './constants';
+import type {
+  FamilyKey,
+  IFamilyProps,
+  IFontFamilies,
+  ISizeProps,
+  IWeightProps,
+} from './types';
+import { useRubberDuckStore } from '../../store';
+import { FONT_SIZES, FONT_WEIGHTS } from './constants';
 
 export class Typography {
   static size = (props: ISizeProps) => {
@@ -13,8 +20,8 @@ export class Typography {
     return FONT_WEIGHTS[key];
   };
 
-  static family = <K extends FamilyKey>(props: IFamilyProps<K>): (typeof FONT_FAMILIES)[K] => {
+  static family = <K extends FamilyKey>(props: IFamilyProps<K>): IFontFamilies[K] => {
     const { key } = props;
-    return FONT_FAMILIES[key];
+    return useRubberDuckStore.getState().fonts[key];
   };
 }

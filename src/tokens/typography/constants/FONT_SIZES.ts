@@ -7,4 +7,5 @@ export const FONT_SIZES = {
   xxl: 32,
   xxxl: 40,
   display: 48,
+  hero: 56,
 } as const;

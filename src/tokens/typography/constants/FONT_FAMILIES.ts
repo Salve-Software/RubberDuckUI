@@ -1,4 +1,6 @@
-export const FONT_FAMILIES = {
+import type { IFontFamilies } from '../types';
+
+export const FONT_FAMILIES: IFontFamilies = {
   sans: {
     light: 'Geist-Light',
     regular: 'Geist-Regular',
@@ -9,4 +11,8 @@ export const FONT_FAMILIES = {
   mono: {
     regular: 'GeistMono-Regular',
   },
-} as const;
+  display: {
+    bold: 'Geist-Bold',
+    black: 'Geist-Bold',
+  },
+};

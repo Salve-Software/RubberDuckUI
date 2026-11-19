@@ -1,6 +1,7 @@
 import type { IStoreState } from './types';
 import { create } from 'zustand';
 import { defaultState } from './defaultState';
+import { mountFonts } from './library';
 import { dark } from '../tokens/colors/dark';
 import { light } from '../tokens/colors/light';
 
@@ -14,6 +15,7 @@ export const useRubberDuckStore = create<IStoreState>((set) => ({
       return {
         isDarkMode,
         colors: { ...(isDarkMode ? dark : light), ...config.colors },
+        fonts: config.fonts ? mountFonts(config.fonts) : state.fonts,
       };
     });
   },
@@ -21,5 +23,6 @@ export const useRubberDuckStore = create<IStoreState>((set) => ({
     set({
       isDarkMode: defaultState.isDarkMode,
       colors: defaultState.colors,
+      fonts: defaultState.fonts,
     }),
 }));

@@ -77,6 +77,7 @@ export default function App() {
 |---|---|---|
 | `darkMode` | `boolean` | `false` |
 | `colors` | `Partial<IColors>` | DS defaults |
+| `fonts` | `IFontFamiliesConfig` | Geist |
 | `style` | `StyleProp<ViewStyle>` | `{ flex: 1 }` |
 
 > **Advanced:** `RubberDuckUI.configure()` and `RubberDuckUI.reset()` are still available for runtime theme changes outside the provider.
@@ -127,7 +128,7 @@ Tokens.spacer({ key: 'md' })
 Tokens.radii({ key: 'sm' })
 Tokens.fontSize({ key: 'lg' })
 Tokens.fontWeight({ key: 'semibold' })
-Tokens.fontFamily({ key: 'sans', weight: 'medium' })
+Tokens.fontFamily({ key: 'sans' }).medium
 ```
 
 To access theme colors reactively inside components, use the `useTheme` hook:
