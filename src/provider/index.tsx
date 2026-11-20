@@ -11,6 +11,7 @@ export const RubberDuckUIProvider: React.FC<IRubberDuckUIProviderProps> = (props
     children,
     darkMode,
     colors,
+    fonts,
     style,
     onReady,
   } = props;
@@ -21,9 +22,9 @@ export const RubberDuckUIProvider: React.FC<IRubberDuckUIProviderProps> = (props
   onReadyRef.current = onReady;
 
   useEffect(() => {
-    RubberDuckUI.configure({ darkMode, colors });
+    RubberDuckUI.configure({ darkMode, colors, fonts });
     onReadyRef.current?.();
-  }, [darkMode, colors]);
+  }, [darkMode, colors, fonts]);
 
   return (
     <GestureHandlerRootView style={[styles.wrapper, style]}>

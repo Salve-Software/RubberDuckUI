@@ -12,10 +12,11 @@ export const useStyles = (props: ITextProps) => {
   } = props;
 
   const colors = useRubberDuckStore((s) => s.colors);
+  const fonts = useRubberDuckStore((s) => s.fonts);
 
-  const fontFamily = Tokens.fontFamily({ key: 'sans' })[weight];
+  const fontFamily = fonts.sans[weight];
   const fontSize = Tokens.fontSize({ key: size });
-  const boldFontFamily = Tokens.fontFamily({ key: 'sans' }).semibold;
+  const boldFontFamily = fonts.sans.semibold;
 
   return StyleSheet.create({
     text: {
