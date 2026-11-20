@@ -1,3 +1,13 @@
+## [0.5.0](https://github.com/Salve-Software/RubberDuckUI/compare/v0.4.0...v0.5.0) (2026-11-20)
+
+### ✨ Features
+
+* **tokens:** configurable font families ([8a5fe22](https://github.com/Salve-Software/RubberDuckUI/commit/8a5fe22542ae1f85735d2f02100263a639639b35))
+
+### 🐛 Bug Fixes
+
+* **store:** keep configure working after reset ([ab8a476](https://github.com/Salve-Software/RubberDuckUI/commit/ab8a476aa28e8ae82d0a37e47ef5196f4971e123))
+
 ## 0.4.0 (2026-09-13)
 
 * Merge pull request #33 from Salve-Software/feat/semantic-release ([6058b91](https://github.com/Salve-Software/RubberDuckUI/commit/6058b91)), closes [#33](https://github.com/Salve-Software/RubberDuckUI/issues/33)
